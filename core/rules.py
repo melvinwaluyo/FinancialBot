@@ -1,6 +1,6 @@
 """
 Rules engine dengan regex dan reflection kata ganti untuk Financial Bot
-Menangani parsing perintah dan respons yang natural
+Menangani parsing perintah dan respons yang natural dalam bahasa Indonesia
 """
 
 import re
@@ -11,22 +11,12 @@ class ReflectionEngine:
     """Engine untuk reflection kata ganti dan transformasi kalimat"""
     
     def __init__(self):
-        # Mapping kata ganti subjek ke objek
+        # Mapping kata ganti subjek ke objek - hanya bahasa Indonesia
         self.pronoun_reflections = {
             'saya': 'kamu',
             'aku': 'kamu', 
-            'gue': 'lu',
-            'gw': 'lu',
             'kamu': 'saya',
-            'lu': 'gue',
-            'anda': 'saya',
-            'my': 'your',
-            'mine': 'yours',
-            'i': 'you',
-            'me': 'you',
-            'you': 'me',
-            'your': 'my',
-            'yours': 'mine'
+            'anda': 'saya'
         }
         
         # Mapping untuk kata kerja
@@ -67,55 +57,55 @@ class FinancialRulesEngine:
     def setup_patterns(self):
         """Setup regex patterns untuk berbagai perintah"""
         
-        # Pattern untuk pemasukan - Diperbaiki urutan dan struktur
+        # Pattern untuk pemasukan - hanya bahasa Indonesia
         self.income_patterns = [
             # Pattern: !income 100000 gaji bonus bulan ini
             r'!income\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
             # Pattern natural: saya dapat gaji 5000000 dari kantor
-            r'(?:saya|aku|gw|gue)\s+(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\w+)\s+(\d+(?:\.\d+)?)\s*(?:dari\s+(.+))?',
+            r'(?:saya|aku)\s+(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\w+)\s+(\d+(?:\.\d+)?)\s*(?:dari\s+(.+))?',
             # Pattern: dapat 500000 freelance
             r'(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
             # Pattern: income 1000000 kategori deskripsi
             r'(?:income|pemasukan|masuk)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
         ]
         
-        # Pattern untuk pengeluaran - Diperbaiki dengan sinonim
+        # Pattern untuk pengeluaran - hanya bahasa Indonesia
         self.expense_patterns = [
             # Pattern: !expense 50000 makanan makan siang
             r'!expense\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
             # Pattern natural: saya habis 50000 untuk makanan
-            r'(?:saya|aku|gw|gue)\s+(?:habis|keluar|bayar|beli|menghabiskan|mengeluarkan|spent|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
+            r'(?:saya|aku)\s+(?:habis|keluar|bayar|beli|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
             # Pattern: keluar 75000 transport
             r'(?:keluar|habis|bayar|beli|expense|pengeluaran|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
             # Pattern: beli makanan 25000
             r'(?:beli|bayar|belanja)\s+(\w+)\s+(\d+(?:\.\d+)?)(?:\s+(.+))?'
         ]
         
-        # Pattern untuk saldo - Made more specific to avoid conflicts
+        # Pattern untuk saldo
         self.balance_patterns = [
             r'^!balance$',
-            r'^(?:saldo|balance)(?:\s+(?:saya|aku|gw|gue))?$',
+            r'^(?:saldo|balance)(?:\s+(?:saya|aku))?$',
             r'^(?:cek|lihat|check)\s+(?:saldo|balance|uang)$',
-            r'^(?:berapa|how much)\s+(?:saldo|uang|money)(?:\s+(?:saya|aku|gw|gue))?$',
-            r'^(?:saya|aku|gw|gue)\s+(?:punya|ada)\s+(?:berapa|how much)$'
+            r'^(?:berapa)\s+(?:saldo|uang)(?:\s+(?:saya|aku))?$',
+            r'^(?:saya|aku)\s+(?:punya|ada)\s+(?:berapa)$'
         ]
         
-        # Pattern untuk laporan - Made more specific and comprehensive
+        # Pattern untuk laporan
         self.report_patterns = [
             r'^!report$',
             r'^(?:laporan|report)$',
             r'^(?:lihat|show|cek)\s+(?:laporan|report)$',
-            r'^(?:ringkasan|summary)\s+(?:keuangan|finansial|financial)$',
-            r'^summary\s+keuangan$',  # Specific pattern for test case
-            r'^(?:laporan|report)\s+(?:keuangan|finansial|financial)$'
+            r'^(?:ringkasan|summary)\s+(?:keuangan|finansial)$',
+            r'^summary\s+keuangan$',
+            r'^(?:laporan|report)\s+(?:keuangan|finansial)$'
         ]
         
         # Pattern untuk bantuan
         self.help_patterns = [
             r'!help',
             r'(?:help|bantuan)',
-            r'(?:gimana|bagaimana|how)\s+(?:cara|way)',
-            r'(?:apa|what)\s+(?:perintah|command)'
+            r'(?:gimana|bagaimana)\s+(?:cara)',
+            r'(?:apa)\s+(?:perintah|command)'
         ]
         
         # Pattern untuk hapus transaksi
@@ -125,40 +115,38 @@ class FinancialRulesEngine:
             r'(?:batalkan|cancel)\s+(?:transaksi\s+)?(\d+)'
         ]
         
-        # Pattern untuk pertanyaan umum tentang bot - FIXED
+        # Pattern untuk pertanyaan umum tentang bot
         self.about_patterns = [
-            r'(?:siapa|who)\s+(?:kamu|you|bot)',
-            r'(?:apa|what)\s+(?:nama|name)\s+(?:kamu|you)',
-            r'(?:kamu|you)\s+(?:siapa|who)',
-            r'(?:perkenalkan|introduce)\s+(?:diri|yourself)',
+            r'(?:siapa)\s+(?:kamu|bot)',
+            r'(?:apa)\s+(?:nama)\s+(?:kamu)',
+            r'(?:kamu)\s+(?:siapa)',
+            r'(?:perkenalkan)\s+(?:diri)',
             r'^(?:hai|hello|hi|halo)$',
-            r'^(?:apa kabar|how are you)$',
-            r'who\s+are\s+you',  # Fixed: specific pattern for "who are you"
-            r'what\s+are\s+you'   # Added: "what are you"
+            r'^(?:apa kabar)$'
         ]
         
         # Pattern untuk pertanyaan kemampuan bot
         self.capability_patterns = [
-            r'(?:apa|what)\s+(?:yang bisa|can you do)',
-            r'(?:kamu|you)\s+(?:bisa|can)\s+(?:apa|what)',
-            r'(?:fungsi|function|fitur|feature)\s+(?:apa|what)',
-            r'(?:kemampuan|capability|abilities)\s+(?:kamu|you)',
-            r'(?:untuk apa|what for)\s+(?:kamu|you)'
+            r'(?:apa)\s+(?:yang bisa|bisa kamu)',
+            r'(?:kamu)\s+(?:bisa)\s+(?:apa)',
+            r'(?:fungsi|fitur)\s+(?:apa)',
+            r'(?:kemampuan)\s+(?:kamu)',
+            r'(?:untuk apa)\s+(?:kamu)'
         ]
         
         # Pattern untuk ucapan terima kasih
         self.thanks_patterns = [
-            r'(?:terima kasih|thank you|thanks|makasih)',
-            r'(?:bagus|good|mantap|keren|nice)',
-            r'(?:hebat|great|awesome|amazing)'
+            r'(?:terima kasih|makasih)',
+            r'(?:bagus|mantap|keren)',
+            r'(?:hebat|bagus sekali)'
         ]
         
-        # Pattern untuk salam perpisahan - FIXED
+        # Pattern untuk salam perpisahan
         self.goodbye_patterns = [
-            r'^(?:bye|goodbye|sampai jumpa|dadah|selamat tinggal)$',  # Fixed: exact match
-            r'^(?:see you|until next time|sampai nanti)$',  # Fixed: exact match
-            r'bye\s*$',  # Match "bye" at end of line
-            r'goodbye\s*$'  # Match "goodbye" at end of line
+            r'^(?:bye|goodbye|sampai jumpa|dadah|selamat tinggal)$',
+            r'^(?:sampai nanti)$',
+            r'bye\s*$',
+            r'goodbye\s*$'
         ]
     
     def parse_amount(self, amount_str: str) -> float:
@@ -174,23 +162,23 @@ class FinancialRulesEngine:
         """Kategorisasi otomatis berdasarkan deskripsi dan jumlah"""
         description_lower = description.lower()
         
-        # Income categories
+        # Income categories - hanya bahasa Indonesia
         income_keywords = {
-            'gaji': ['gaji', 'salary', 'kantor', 'kerja', 'office', 'pekerjaan', 'job'],
-            'freelance': ['freelance', 'projek', 'project', 'kontrak', 'lepas', 'sampingan'],
-            'investasi': ['saham', 'reksadana', 'dividen', 'profit', 'trading', 'invest'],
-            'hadiah': ['hadiah', 'gift', 'bonus', 'reward', 'prize', 'kado', 'pemberian']
+            'gaji': ['gaji', 'kantor', 'kerja', 'pekerjaan'],
+            'freelance': ['freelance', 'projek', 'kontrak', 'lepas', 'sampingan'],
+            'investasi': ['saham', 'reksadana', 'dividen', 'profit', 'trading', 'investasi'],
+            'hadiah': ['hadiah', 'bonus', 'reward', 'kado', 'pemberian']
         }
         
-        # Expense categories
+        # Expense categories - hanya bahasa Indonesia
         expense_keywords = {
-            'makanan': ['makan', 'food', 'nasi', 'ayam', 'restaurant', 'cafe', 'snack', 'lapar', 'kenyang', 'minuman', 'drink'],
-            'transport': ['transport', 'bensin', 'ojek', 'taksi', 'bus', 'kereta', 'grab', 'gojek', 'uber', 'motor', 'mobil'],
-            'hiburan': ['film', 'movie', 'game', 'spotify', 'netflix', 'youtube', 'concert', 'musik', 'entertainment'],
+            'makanan': ['makan', 'nasi', 'ayam', 'restaurant', 'cafe', 'snack', 'lapar', 'kenyang', 'minuman'],
+            'transport': ['transport', 'bensin', 'ojek', 'taksi', 'bus', 'kereta', 'grab', 'gojek', 'motor', 'mobil'],
+            'hiburan': ['film', 'game', 'spotify', 'netflix', 'youtube', 'concert', 'musik', 'hiburan'],
             'belanja': ['beli', 'shopping', 'baju', 'sepatu', 'elektronik', 'gadget', 'belanja', 'mall', 'toko'],
-            'tagihan': ['listrik', 'air', 'internet', 'wifi', 'telepon', 'cicilan', 'bayar', 'bill', 'utilities'],
-            'kesehatan': ['dokter', 'obat', 'hospital', 'medical', 'vitamin', 'therapy', 'rumah sakit', 'clinic'],
-            'pendidikan': ['kursus', 'buku', 'sekolah', 'kuliah', 'training', 'course', 'seminar', 'workshop']
+            'tagihan': ['listrik', 'air', 'internet', 'wifi', 'telepon', 'cicilan', 'bayar', 'tagihan'],
+            'kesehatan': ['dokter', 'obat', 'hospital', 'rumah sakit', 'vitamin', 'therapy', 'clinic'],
+            'pendidikan': ['kursus', 'buku', 'sekolah', 'kuliah', 'training', 'seminar', 'workshop']
         }
         
         # Check income keywords
@@ -226,7 +214,7 @@ class FinancialRulesEngine:
         groups = match.groups()
         
         # Handle different pattern orders
-        if text.lower().startswith(('saya', 'aku', 'gw', 'gue')):
+        if text.lower().startswith(('saya', 'aku')):
             # Natural language: saya dapat freelance 1000000 dari projek
             category = groups[0].lower()
             amount = self.parse_amount(groups[1])
@@ -350,9 +338,9 @@ class FinancialRulesEngine:
                    "🤖 **Tentang Saya:**\n"
                    "• Nama: Financial Bot\n"
                    "• Fungsi: Membantu melacak pemasukan dan pengeluaran\n"
-                   "• Bahasa: Indonesia & English\n"
+                   "• Bahasa: Indonesia\n"
                    "• Dibuat dengan: Python & Love ❤️\n\n"
-                   "💡 Saya bisa memahami bahasa natural, jadi kamu bisa bicara santai denganku!\n"
+                   "💡 Saya bisa memahami bahasa natural Indonesia, jadi kamu bisa bicara santai denganku!\n"
                    "Ketik `!help` untuk melihat semua yang bisa saya lakukan.")
         
         elif command_type == 'capability':
@@ -363,8 +351,7 @@ class FinancialRulesEngine:
                    "• Buat laporan keuangan\n"
                    "• Kategorisasi transaksi otomatis\n\n"
                    "🧠 **Kecerdasan:**\n"
-                   "• Mengerti bahasa natural Indonesia & English\n"
-                   "• Pahami bahasa gaul (gue/lu, dll)\n"
+                   "• Mengerti bahasa natural Indonesia\n"
                    "• Auto-detect kategori dari deskripsi\n"
                    "• Reflection kata ganti untuk percakapan natural\n\n"
                    "📊 **Fitur Lain:**\n"

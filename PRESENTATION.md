@@ -12,9 +12,10 @@
 ### Solusi yang Ditawarkan
 
 - **Integrasi Discord**: Menggunakan platform yang sudah familiar untuk komunitas/tim
-- **Natural Language Processing**: Bisa menggunakan bahasa natural Indonesia dan English
+- **Natural Language Processing**: Bisa menggunakan bahasa natural Indonesia
 - **Real-time Tracking**: Pencatatan dan laporan instant
 - **Automated Categorization**: Kategori otomatis berdasarkan deskripsi
+- **Mention-Only Mode**: Bot hanya respond ketika di-mention untuk mengurangi spam
 
 ### Target Pengguna
 
@@ -34,10 +35,10 @@
 r'!income\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
 
 # Natural language: saya dapat gaji 5000000 dari kantor
-r'(?:saya|aku|gw|gue)\s+(?:dapat|terima|dapet)\s+(?:gaji|uang|dana|income|pemasukan)\s+(\d+(?:\.\d+)?)\s+(?:dari\s+)?(\w+)(?:\s+(.+))?'
+r'(?:saya|aku)\s+(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\w+)\s+(\d+(?:\.\d+)?)\s*(?:dari\s+(.+))?'
 
 # Simple: dapat 500000 freelance
-r'(?:dapat|terima|dapet)\s+(\d+(?:\.\d+)?)\s+(?:dari\s+)?(\w+)(?:\s+(.+))?'
+r'(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
 
 # Generic: income 1000000 kategori deskripsi
 r'(?:income|pemasukan|masuk)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
@@ -50,26 +51,41 @@ r'(?:income|pemasukan|masuk)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
 r'!expense\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
 
 # Natural: saya habis 50000 untuk makanan
-r'(?:saya|aku|gw|gue)\s+(?:habis|keluar|bayar|beli)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?'
+r'(?:saya|aku)\s+(?:habis|keluar|bayar|beli|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?'
 
 # Action-first: beli makanan 25000
-r'(?:beli|bayar)\s+(\w+)\s+(\d+(?:\.\d+)?)(?:\s+(.+))?'
+r'(?:beli|bayar|belanja)\s+(\w+)\s+(\d+(?:\.\d+)?)(?:\s+(.+))?'
 
 # Generic: keluar 75000 transport
-r'(?:keluar|habis|bayar|beli|expense|pengeluaran)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?'
+r'(?:keluar|habis|bayar|beli|expense|pengeluaran|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?'
+```
+
+#### Conversation Patterns
+
+```regex
+# About bot
+r'(?:siapa)\s+(?:kamu|bot)'
+r'(?:apa)\s+(?:nama)\s+(?:kamu)'
+
+# Capabilities
+r'(?:apa)\s+(?:yang bisa|bisa kamu)'
+r'(?:kemampuan)\s+(?:kamu)'
+
+# Thanks and goodbye
+r'(?:terima kasih|makasih)'
+r'(?:sampai jumpa|dadah)'
 ```
 
 ### B. Reflection Engine (Kata Ganti)
 
-#### Pronoun Mapping
+#### Pronoun Mapping - Bahasa Indonesia
 
 ```python
 pronoun_reflections = {
-    'saya': 'kamu',    'aku': 'kamu',
-    'gue': 'lu',       'gw': 'lu',
-    'kamu': 'saya',    'lu': 'gue',
-    'anda': 'saya',    'my': 'your',
-    'i': 'you',        'you': 'me'
+    'saya': 'kamu',
+    'aku': 'kamu',
+    'kamu': 'saya',
+    'anda': 'saya'
 }
 ```
 
@@ -81,35 +97,34 @@ pronoun_reflections = {
 
 ### C. Automatic Categorization
 
-#### Income Keywords
+#### Income Keywords - Bahasa Indonesia
 
 ```python
 income_keywords = {
-    'gaji': ['gaji', 'salary', 'kantor', 'kerja'],
-    'freelance': ['freelance', 'projek', 'project', 'kontrak'],
-    'investasi': ['saham', 'reksadana', 'dividen', 'profit'],
-    'hadiah': ['hadiah', 'gift', 'bonus', 'reward']
+    'gaji': ['gaji', 'kantor', 'kerja', 'pekerjaan'],
+    'freelance': ['freelance', 'projek', 'kontrak', 'lepas', 'sampingan'],
+    'investasi': ['saham', 'reksadana', 'dividen', 'profit', 'trading', 'investasi'],
+    'hadiah': ['hadiah', 'bonus', 'reward', 'kado', 'pemberian']
 }
 ```
 
-#### Expense Keywords
+#### Expense Keywords - Bahasa Indonesia
 
 ```python
 expense_keywords = {
-    'makanan': ['makan', 'food', 'nasi', 'restaurant', 'cafe'],
-    'transport': ['bensin', 'ojek', 'taksi', 'grab', 'gojek'],
-    'hiburan': ['film', 'movie', 'game', 'spotify', 'netflix'],
-    'tagihan': ['listrik', 'air', 'internet', 'cicilan']
+    'makanan': ['makan', 'nasi', 'ayam', 'restaurant', 'cafe', 'snack', 'lapar', 'kenyang', 'minuman'],
+    'transport': ['transport', 'bensin', 'ojek', 'taksi', 'bus', 'kereta', 'grab', 'gojek', 'motor', 'mobil'],
+    'hiburan': ['film', 'game', 'spotify', 'netflix', 'youtube', 'concert', 'musik', 'hiburan'],
+    'tagihan': ['listrik', 'air', 'internet', 'wifi', 'telepon', 'cicilan', 'bayar', 'tagihan']
 }
 ```
 
 ### D. Advanced Pattern Features
 
-#### Multi-Language Support
+#### Natural Language Support
 
-- **Bahasa Indonesia**: "saya dapat", "habis uang"
-- **Bahasa Gaul**: "gue dapet", "lu abis"
-- **English**: "i got", "spent money"
+- **Bahasa Indonesia Formal**: "saya dapat", "saya habis"
+- **Bahasa Indonesia Casual**: "aku dapat", "aku habis"
 
 #### Flexible Amount Parsing
 
@@ -129,33 +144,45 @@ def categorize_automatically(description, amount):
         return categorize_by_keywords(description)
 ```
 
+#### Mention-Only Processing
+
+```python
+# Check if bot is mentioned
+is_mentioned = bot.user in message.mentions
+starts_with_mention = content.startswith(f'<@{bot.user.id}>')
+
+# Only process if mentioned
+if not (is_mentioned or starts_with_mention):
+    return
+```
+
 ## 3. Arsitektur Sistem
 
 ### Core Components
 
-1. **Rules Engine** (`core/rules.py`)
+1. **Rules Engine** ([`core/rules.py`](core/rules.py))
 
-   - Regex pattern matching
-   - Reflection engine
-   - Automatic categorization
-   - Response generation
+   - Regex pattern matching untuk bahasa Indonesia
+   - Reflection engine untuk conversation natural
+   - Automatic categorization dengan keyword matching
+   - Response generation dengan context awareness
 
-2. **Database Manager** (`core/database.py`)
+2. **Database Manager** ([`core/database.py`](core/database.py))
 
    - SQLite operations
    - Transaction CRUD
    - Balance calculations
    - Category reports
 
-3. **Bot Core** (`core/bot_core.py`)
+3. **Bot Core** ([`core/bot_core.py`](core/bot_core.py))
 
    - Integration layer
    - Error handling
    - Logging
    - User session management
 
-4. **Discord Bot** (`bot.py`)
-   - Discord.py integration
+4. **Discord Bot** ([`bot.py`](bot.py))
+   - Discord.py integration dengan mention-only mode
    - Event handling
    - Command processing
    - Rich embeds
@@ -163,21 +190,21 @@ def categorize_automatically(description, amount):
 ### Data Flow
 
 ```
-User Message → Regex Parsing → Command Recognition →
-Database Operation → Response Generation →
-Reflection Application → Discord Output
+User Mention → Mention Check → Regex Parsing → Command Recognition →
+Database Operation → Response Generation → Reflection Application → Discord Output
 ```
 
 ## 4. Testing & Quality Assurance
 
-### Test Coverage (6+ Cases Minimal)
+### Test Coverage (30+ Cases)
 
-#### A. Unit Tests - Rules Engine (8 tests)
+#### A. Unit Tests - Rules Engine (11 tests)
 
-- Pronoun reflection (Indonesian, informal, English)
+- Pronoun reflection bahasa Indonesia
 - Income command parsing (4 variations)
 - Expense command parsing (4 variations)
 - Balance/report/help command recognition
+- About/capability/thanks/goodbye patterns
 - Automatic categorization
 - Amount parsing edge cases
 - Unknown command handling
@@ -217,22 +244,22 @@ Reflection Application → Discord Output
 
 ## 5. Fitur Unggulan
 
-### A. Natural Language Processing
+### A. Natural Language Processing Bahasa Indonesia
 
 ```
-✅ "!income 5000000 gaji" (Command format)
-✅ "saya dapat gaji 5000000 dari kantor" (Natural)
-✅ "dapat 1000000 freelance" (Simple)
-✅ "gue dapet 500000 projek" (Slang)
+✅ "@FinancialBot !income 5000000 gaji" (Command format)
+✅ "@FinancialBot saya dapat gaji 5000000 dari kantor" (Natural)
+✅ "@FinancialBot dapat 1000000 freelance" (Simple)
+✅ "@FinancialBot aku dapat 500000 projek" (Casual)
 ```
 
 ### B. Smart Categorization
 
 ```python
-Input: "habis 50000 makan siang di warteg"
+Input: "@FinancialBot habis 50000 makan siang di warteg"
 → Auto-detect: category="makanan"
 
-Input: "bayar 200000 listrik bulan ini"
+Input: "@FinancialBot bayar 200000 listrik bulan ini"
 → Auto-detect: category="tagihan"
 ```
 
@@ -256,25 +283,28 @@ Input: "bayar 200000 listrik bulan ini"
   📉 Net: Rp -350,000
 ```
 
-### D. Multi-Format Support
+### D. Mention-Only Mode
 
-- **Formal Commands**: `!income`, `!expense`, `!balance`
-- **Natural Language**: "berapa saldo saya?"
-- **Conversational**: "saya habis uang untuk makan"
-- **Mixed Language**: Indonesian + English keywords
+- **Spam Protection**: Bot hanya respond ketika di-mention
+- **Clean Channels**: Tidak ada interference dengan conversation lain
+- **Clear Intent**: User harus explicit mention bot untuk interaction
 
 ## 6. Implementasi Technical
 
-### A. Discord Integration
+### A. Discord Integration dengan Mention Check
 
 ```python
+# Mention detection
+is_mentioned = bot.user in message.mentions
+starts_with_mention = content.startswith(f'<@{bot.user.id}>')
+
+# Clean content dari mention
+if starts_with_mention:
+    clean_content = content.replace(f'<@{bot.user.id}>', '').strip()
+
 # Rich embed responses
 embed = discord.Embed(title="📊 Statistik Keuangan")
 embed.add_field(name="💰 Saldo", value=f"Rp {balance:,.0f}")
-
-# Multi-message handling for long responses
-if len(response) > 2000:
-    chunks = [response[i:i+1900] for i in range(0, len(response), 1900)]
 ```
 
 ### B. Error Handling
@@ -287,6 +317,7 @@ if len(response) > 2000:
 ### C. Logging & Monitoring
 
 ```python
+self.logger.info(f"Mentioned by {username}: {clean_content}")
 self.logger.info(f"Income added: {username} - Rp {amount:,.0f}")
 self.logger.error(f"Database error: {e}")
 ```
@@ -301,27 +332,34 @@ self.logger.error(f"Database error: {e}")
 4. **Run Bot**: `python bot.py`
 5. **Test CLI**: `python cli_runner.py`
 
-### Bot Commands
+### Mention-Based Commands
 
 ```
-!income <amount> <category> <description>  # Add income
-!expense <amount> <category> <description> # Add expense
-!balance                                   # Check balance
-!report                                    # Generate report
-!help                                      # Show help
-!stats                                     # Detailed statistics
-!recent [limit]                            # Recent transactions
-!categories                                # Available categories
+@FinancialBot !income <amount> <category> <description>  # Add income
+@FinancialBot !expense <amount> <category> <description> # Add expense
+@FinancialBot !balance                                   # Check balance
+@FinancialBot !report                                    # Generate report
+@FinancialBot !help                                      # Show help
+@FinancialBot !stats                                     # Detailed statistics
 ```
 
-### Natural Commands
+### Natural Commands (dengan Mention)
 
 ```
-"saya dapat gaji 5000000 dari kantor"
-"habis 50000 untuk makan siang"
-"berapa saldo saya?"
-"lihat laporan keuangan"
-"bantuan"
+@FinancialBot saya dapat gaji 5000000 dari kantor
+@FinancialBot habis 50000 untuk makan siang
+@FinancialBot berapa saldo saya?
+@FinancialBot lihat laporan keuangan
+@FinancialBot bantuan
+```
+
+### Conversation Commands
+
+```
+@FinancialBot siapa kamu?
+@FinancialBot apa yang bisa kamu lakukan?
+@FinancialBot terima kasih
+@FinancialBot sampai jumpa
 ```
 
 ## 8. Kesimpulan
@@ -330,24 +368,32 @@ Financial Bot Discord menggabungkan:
 
 ### ✅ Kompleksitas Technical
 
-- **30+ Regex patterns** untuk parsing multi-format
+- **20+ Regex patterns** untuk parsing multi-format bahasa Indonesia
 - **Reflection engine** untuk natural conversation
-- **Auto-categorization** dengan machine learning approach
-- **Multi-language support** (ID, EN, slang)
+- **Auto-categorization** dengan keyword matching approach
+- **Mention-only processing** untuk clean Discord experience
 
 ### ✅ User Experience
 
-- **Zero learning curve** - gunakan bahasa sehari-hari
+- **Zero learning curve** - gunakan bahasa Indonesia sehari-hari
 - **Real-time feedback** dengan emoji dan formatting
 - **Rich reporting** dengan breakdown kategori
 - **Error handling** yang informatif
+- **Non-intrusive** - hanya respond ketika di-mention
 
 ### ✅ Quality Assurance
 
 - **30+ comprehensive tests** covering all scenarios
-- **End-to-end testing** dari input ke output
+- **End-to-end testing** dari mention ke output
 - **Edge case handling** untuk robust operation
 - **Multi-user isolation** untuk privacy
+
+### ✅ Language Processing
+
+- **Natural Language Understanding** untuk bahasa Indonesia
+- **Context-aware categorization** berdasarkan deskripsi
+- **Flexible input parsing** untuk berbagai format
+- **Conversation support** untuk interaction yang natural
 
 ### 🚀 Scalability
 
@@ -356,4 +402,6 @@ Financial Bot Discord menggabungkan:
 - **Plugin system** untuk fitur tambahan
 - **API ready** untuk integrasi external
 
-**Financial Bot Discord** bukan hanya pencatat transaksi, tapi **intelligent financial assistant** yang memahami bahasa natural dan memberikan insights keuangan real-time melalui platform yang sudah familiar.
+**Financial Bot Discord** adalah **intelligent financial assistant** yang memahami bahasa natural Indonesia dan memberikan insights keuangan real-time melalui platform Discord dengan mention-only mode untuk pengalaman yang clean dan focused.
+
+🚀 **Ready to manage your finances smartly? Just mention @FinancialBot and start tracking!**
