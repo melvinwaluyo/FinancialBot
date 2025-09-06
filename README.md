@@ -148,10 +148,6 @@ Bot hanya akan merespons ketika di-mention. Contoh:
 
 ```bash
 @FinancialBot !help          # Panduan lengkap
-@FinancialBot !stats         # Statistik dengan rich embed
-@FinancialBot !recent 10     # 10 transaksi terbaru
-@FinancialBot !categories    # Daftar kategori
-@FinancialBot !delete <id>   # Hapus transaksi
 ```
 
 ## 🧪 Testing
