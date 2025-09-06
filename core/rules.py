@@ -149,24 +149,27 @@ class FinancialRulesEngine:
             r'goodbye\s*$'
         ]
         
-        # Pattern untuk budgeting advice
+        # Pattern untuk budgeting advice - Pure Indonesian
         self.budget_patterns = [
-            r'(?:help|bantuan|buatkan|buat)\s+(?:me|saya|aku)?\s*(?:create|buat|bikin)?\s+(?:a\s+)?(?:budget|anggaran)',
-            r'(?:saya|aku)\s+(?:mau|ingin|butuh|perlu)\s+(?:budget|anggaran|bantuan budgeting)',
-            r'(?:gimana|bagaimana)\s+(?:cara|bikin|buat)\s+(?:budget|anggaran)',
-            r'(?:tolong|help|bantuan)\s+(?:budget|anggaran|budgeting)',
-            r'(?:analisis|analisa|cek|check)\s+(?:budget|anggaran)\s+(?:saya|aku)',
-            r'(?:budget|anggaran)\s+(?:advice|saran|rekomendasi)',
-            r'(?:buat|create|bikin|buatkan)\s+(?:budget|anggaran)',
-            r'(?:bantuan)\s+(?:budget|anggaran)'
+            r'(?:bantuan|buatkan|buat)\s+(?:saya|aku)?\s*(?:buat|bikin)?\s+(?:anggaran)',
+            r'(?:saya|aku)\s+(?:mau|ingin|butuh|perlu)\s+(?:anggaran|bantuan anggaran)',
+            r'(?:gimana|bagaimana)\s+(?:cara|bikin|buat)\s+(?:anggaran)',
+            r'(?:tolong|bantuan)\s+(?:anggaran)',
+            r'(?:analisis|analisa|cek)\s+(?:anggaran)\s+(?:saya|aku)',
+            r'(?:anggaran)\s+(?:saran|rekomendasi)',
+            r'(?:buat|bikin|buatkan)\s+(?:anggaran)',
+            r'(?:bantuan)\s+(?:anggaran)',
+            r'(?:saran|rekomendasi)\s+(?:anggaran)',
+            r'(?:konsultasi)\s+(?:anggaran|keuangan)'
         ]
         
-        # Pattern untuk purchasing planning
+        # Pattern untuk purchasing planning - Pure Indonesian
         self.purchase_patterns = [
-            r'(?:saya|aku|i)\s+(?:mau|ingin|pengen|want|want to)\s+(?:beli|buy|purchase)\s+(?:a\s+)?(.+?)(?:\s+(?:harga|seharga|dengan harga|for|at|price|seharga)?\s*(\d+(?:,?\d+)*))?',
-            r'(?:i want to|mau|ingin|pengen)\s+(?:buy|beli|purchase)\s+(?:a\s+)?(.+?)(?:\s+(?:\$|Rp)?\s*(\d+(?:,?\d+)*))?',
-            r'(?:planning|rencana)\s+(?:to\s+)?(?:buy|beli|purchase|membeli)\s+(.+?)(?:\s+(?:\$|Rp)?\s*(\d+(?:,?\d+)*))?',
-            r'(?:analisis|analisa|analysis)\s+(?:beli|purchase|buying)\s+(.+?)(?:\s+(?:\$|Rp)?\s*(\d+(?:,?\d+)*))?'
+            r'(?:saya|aku)\s+(?:mau|ingin|pengen)\s+(?:beli)\s+(.+?)(?:\s+(?:harga|seharga)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:mau|ingin|pengen)\s+(?:beli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:rencana)\s+(?:beli|membeli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:analisis|analisa)\s+(?:beli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:konsultasi)\s+(?:beli|pembelian)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?'
         ]
     
     def parse_amount(self, amount_str: str) -> float:
@@ -482,20 +485,20 @@ class FinancialRulesEngine:
                    "• Buat laporan keuangan\n"
                    "• Kategorisasi transaksi otomatis\n\n"
                    "📊 **Analisis Keuangan:**\n"
-                   "• Budget advice dengan alokasi 50/30/20\n"
-                   "• Purchase planning analysis\n"
-                   "• Debt management recommendations\n"
-                   "• Financial goal planning\n\n"
+                   "• Saran anggaran bulanan yang sederhana\n"
+                   "• Analisis rencana pembelian barang\n"
+                   "• Rekomendasi pengelolaan uang\n"
+                   "• Bantuan perencanaan keuangan\n\n"
                    "🧠 **Kecerdasan:**\n"
-                   "• Mengerti bahasa natural Indonesia & English\n"
-                   "• Auto-detect kategori dari deskripsi\n"
-                   "• Reflection kata ganti untuk percakapan natural\n"
-                   "• Smart financial recommendations\n\n"
+                   "• Mengerti bahasa natural Indonesia\n"
+                   "• Deteksi kategori otomatis dari deskripsi\n"
+                   "• Percakapan yang natural dan santai\n"
+                   "• Rekomendasi keuangan yang praktis\n\n"
                    "📊 **Fitur Lain:**\n"
-                   "• Multi-user support\n"
-                   "• Real-time balance tracking\n"
-                   "• Rich formatting dengan emoji\n"
-                   "• Error handling yang informatif\n\n"
+                   "• Dukungan multi-user\n"
+                   "• Tracking saldo real-time\n"
+                   "• Format cantik dengan emoji\n"
+                   "• Penanganan error yang informatif\n\n"
                    "Ketik `!help` untuk panduan lengkap!")
         
         elif command_type == 'thanks':
@@ -556,15 +559,15 @@ class FinancialRulesEngine:
 • `@FinancialBot !delete <id>` - Hapus transaksi
 
 **Fitur Analisis Keuangan:**
-• `@FinancialBot help me create a budget` - Analisis budget personal
-• `@FinancialBot I want to buy a 30000000 car` - Analisis rencana pembelian
+• `@FinancialBot bantuan anggaran` - Saran anggaran bulanan
+• `@FinancialBot saya mau beli mobil 50000000` - Analisis rencana pembelian
 
 **Cara Natural:**
 • "@FinancialBot Saya dapat gaji 5000000 dari kantor"
 • "@FinancialBot Habis 50000 untuk makanan lunch"
 • "@FinancialBot Berapa saldo saya?"
-• "@FinancialBot Buatkan saya budget"
-• "@FinancialBot Saya mau beli mobil 50000000"
+• "@FinancialBot Buatkan anggaran saya"
+• "@FinancialBot Saya mau beli laptop 15000000"
 
 **Pertanyaan Umum:**
 • "@FinancialBot Siapa kamu?" - Kenalan dengan bot
@@ -594,14 +597,14 @@ Makanan, Transport, Hiburan, Belanja, Tagihan, Kesehatan, Pendidikan, Gaji, Free
         return "Perintah tidak dikenali. Ketik `!help` untuk bantuan."
     
     def _generate_budget_advice_response(self, user_data: Dict[str, Any] = None) -> str:
-        """Generate budget advice response based on user's financial data"""
+        """Generate budget advice response based on user's financial data - Pure Indonesian"""
         if not user_data or not user_data.get('balance'):
-            return ("📊 **Budget Advice**\n\n"
-                   "Untuk memberikan saran budget yang akurat, saya perlu data keuangan Anda terlebih dahulu.\n\n"
+            return ("📊 **Saran Anggaran**\n\n"
+                   "Untuk memberikan saran anggaran yang tepat, saya perlu data keuangan kamu dulu.\n\n"
                    "💡 **Mulai dengan:**\n"
-                   "• Catat pemasukan bulanan Anda\n"
-                   "• Catat pengeluaran rutin Anda\n"
-                   "• Lalu minta saran budget lagi\n\n"
+                   "• Catat pemasukan bulanan kamu\n"
+                   "• Catat pengeluaran rutin kamu\n"
+                   "• Lalu minta saran anggaran lagi\n\n"
                    "**Contoh**: \"Saya dapat gaji 6250000 dari kantor\"")
         
         balance_info = user_data.get('balance', {})
@@ -610,136 +613,127 @@ Makanan, Transport, Hiburan, Belanja, Tagihan, Kesehatan, Pendidikan, Gaji, Free
         balance = balance_info.get('balance', 0)
         
         if income == 0:
-            return ("📊 **Budget Advice**\n\n"
-                   "Saya belum melihat pemasukan Anda. Untuk membuat budget yang efektif, "
-                   "tolong catat pemasukan bulanan Anda terlebih dahulu.\n\n"
+            return ("📊 **Saran Anggaran**\n\n"
+                   "Saya belum melihat pemasukan kamu. Untuk membuat anggaran yang baik, "
+                   "tolong catat pemasukan bulanan kamu dulu.\n\n"
                    "**Contoh**: \"Saya dapat gaji 6250000 dari kantor\"")
         
-        # Calculate percentages
+        # Calculate simple percentages
         expense_percentage = (expense / income * 100) if income > 0 else 0
         available = balance
         
-        # Budget recommendations based on 50/30/20 rule (adjusted for Indonesian context)
-        emergency_fund = income * 0.10  # 10% for emergency fund
-        debt_payments = min(income * 0.25, available * 0.5)  # Up to 25% for debt or 50% of surplus
-        retirement = income * 0.06  # 6% for retirement/investment
-        goals_fun = max(0, available - emergency_fund - debt_payments - retirement)
+        # Simple budget recommendations - Indonesian style
+        dana_darurat = income * 0.15  # 15% untuk dana darurat
+        tabungan = available * 0.30 if available > 0 else 0  # 30% dari sisa untuk tabungan
+        sisanya = max(0, available - dana_darurat - tabungan)
         
-        # Generate response
-        response = f"💰 **Monthly Budget Breakdown**:\n"
-        response += f"• **Income**: Rp {income:,.0f}\n"
-        response += f"• **Expenses**: Rp {expense:,.0f}\n"
-        response += f"• **Available**: Rp {available:,.0f}\n\n"
+        # Generate simple response in Indonesian
+        response = f"💰 **Ringkasan Keuangan Bulanan**:\n"
+        response += f"• **Pemasukan**: Rp {income:,.0f}\n"
+        response += f"• **Pengeluaran**: Rp {expense:,.0f}\n"
+        response += f"• **Sisa**: Rp {available:,.0f}\n\n"
         
-        response += f"📊 **Recommended Allocation**:\n"
-        response += f"• **Emergency Fund**: Rp {emergency_fund:,.0f} (10% of income)\n"
-        response += f"• **Debt Payments**: Rp {debt_payments:,.0f}\n"
-        response += f"• **Retirement**: Rp {retirement:,.0f} (6% of income)\n"
-        response += f"• **Goals/Fun**: Rp {goals_fun:,.0f}\n\n"
+        response += f"📊 **Saran Penggunaan Sisa Uang**:\n"
+        response += f"• **Dana Darurat**: Rp {dana_darurat:,.0f} (15% dari gaji)\n"
+        response += f"• **Tabungan**: Rp {tabungan:,.0f} (30% dari sisa)\n"
+        response += f"• **Sisanya untuk Kamu**: Rp {sisanya:,.0f}\n\n"
         
-        # Add warnings and advice
+        # Simple advice based on expense ratio
         if expense_percentage > 80:
-            response += "⚠️ **Budget Concerns**: You're spending {:.0f}% of income on expenses. Consider reducing non-essential spending.\n\n".format(expense_percentage)
+            response += "⚠️ **Perhatian**: Pengeluaran kamu sudah {:.0f}% dari gaji. Coba kurangi pengeluaran yang tidak perlu.\n\n".format(expense_percentage)
         elif expense_percentage > 60:
-            response += "⚠️ **Budget Concerns**: You're spending {:.0f}% of income on expenses, which is reasonable, but prioritize debt payoff with your surplus.\n\n".format(expense_percentage)
+            response += "✅ **Lumayan Baik**: Pengeluaran kamu {:.0f}% dari gaji. Sisanya bisa ditabung atau investasi.\n\n".format(expense_percentage)
         else:
-            response += "✅ **Good News**: Your expense ratio ({:.0f}%) is healthy! Focus on maximizing savings and investments.\n\n".format(expense_percentage)
+            response += "👍 **Bagus Sekali**: Pengeluaran kamu cuma {:.0f}% dari gaji. Kamu bisa nabung banyak!\n\n".format(expense_percentage)
         
-        # Add actionable tips
-        response += "💡 **Next Steps**:\n"
+        # Simple actionable tips
+        response += "💡 **Yang Harus Dilakukan**:\n"
         if available > 0:
-            response += "• Build emergency fund (3-6 months expenses)\n"
-            response += "• Pay off high-interest debt\n" 
-            response += "• Increase retirement contributions\n"
+            response += "• Sisihkan dana darurat dulu (target 6 bulan pengeluaran)\n"
+            response += "• Tabung sisanya secara rutin\n" 
+            response += "• Kalau udah cukup, coba investasi\n"
         else:
-            response += "• Track all expenses for one month\n"
-            response += "• Identify areas to cut spending\n"
-            response += "• Consider additional income sources\n"
+            response += "• Catat semua pengeluaran selama sebulan\n"
+            response += "• Cari pengeluaran yang bisa dikurangi\n"
+            response += "• Coba cari tambahan pendapatan\n"
         
         return response
     
     def _generate_purchase_planning_response(self, command_result: Dict[str, Any], user_data: Dict[str, Any] = None) -> str:
-        """Generate purchase planning response"""
-        item = command_result.get('item', 'item')
+        """Generate purchase planning response - Pure Indonesian & Simple"""
+        item = command_result.get('item', 'barang')
         price = command_result.get('price', 0)
         
         if not user_data or not user_data.get('balance'):
-            return (f"🛍️ **Purchase Planning: {item}**\n\n"
-                   f"**Purchase Price**: Rp {price:,.0f}\n\n"
-                   "Untuk memberikan analisis yang akurat, saya perlu data keuangan Anda.\n\n"
+            return (f"🛍️ **Analisis Pembelian: {item.title()}**\n\n"
+                   f"**Harga**: Rp {price:,.0f}\n\n"
+                   "Untuk memberikan analisis yang tepat, saya perlu data keuangan kamu.\n\n"
                    "💡 **Catat dulu:**\n"
-                   "• Pemasukan bulanan\n"
-                   "• Pengeluaran rutin\n"
-                   "• Hutang yang ada\n\n"
-                   "Lalu tanyakan lagi tentang rencana pembelian ini!")
+                   "• Pemasukan bulanan kamu\n"
+                   "• Pengeluaran rutin kamu\n\n"
+                   "Lalu tanyakan lagi tentang rencana beli ini!")
         
         balance_info = user_data.get('balance', {})
         income = balance_info.get('income', 0)
         expense = balance_info.get('expense', 0)
         current_balance = balance_info.get('balance', 0)
         
-        # Get debt information from transaction history if available
-        debt_transactions = user_data.get('debt_info', {})
-        total_debt = debt_transactions.get('total_debt', 0)
+        response = f"🛍️ **Analisis Beli {item.title()}**:\n\n"
+        response += f"**Harga Barang**: Rp {price:,.0f}\n"
+        response += f"**Gaji Bulanan**: Rp {income:,.0f}\n"
+        response += f"**Saldo Sekarang**: Rp {current_balance:,.0f}\n\n"
         
-        response = f"🛍️ **{item.title()} Purchase Analysis**:\n\n"
-        response += f"**Purchase Price**: Rp {price:,.0f}\n"
-        if total_debt > 0:
-            response += f"**Current Debt**: Rp {total_debt:,.0f}\n"
-        response += f"**Monthly Income**: Rp {income:,.0f}\n"
-        response += f"**Current Balance**: Rp {current_balance:,.0f}\n\n"
-        
-        # Analyze affordability
-        months_of_income = (price / income) if income > 0 else float('inf')
+        # Simple affordability check
         can_afford_now = current_balance >= price
+        months_salary = (price / income) if income > 0 else 0
         
-        if total_debt > 0 and price > current_balance * 0.5:
-            response += "⚠️ **Concerns**:\n"
-            response += f"• Adding debt while carrying existing debt of Rp {total_debt:,.0f}\n"
-            if total_debt + price > income * 12:
-                response += f"• Total debt would become Rp {total_debt + price:,.0f} ({(total_debt + price)/income:.1f} months of income)\n"
-            response += "• This could strain your financial stability\n\n"
-        
-        response += "💡 **Alternatives to Consider**:\n\n"
-        
-        # Option 1: Lower cost alternative
-        if price > income * 0.5:  # If expensive relative to income
-            lower_price = price * 0.6
-            response += f"**Option 1**: Lower Cost Alternative (Rp {lower_price:,.0f})\n"
-            response += "• Reduces financial pressure\n"
-            response += "• Allows for emergency fund building\n"
-            response += "• Less depreciation risk\n\n"
-        
-        # Option 2: Wait and save
-        if not can_afford_now or total_debt > 0:
-            months_to_save = max(1, (price - current_balance) / max(1, income - expense))
-            response += "**Option 2**: Wait & Save\n"
-            if total_debt > 0:
-                response += "• Pay off existing debt first\n"
-                debt_payoff_months = total_debt / max(1, (income - expense) * 0.5)
-                response += f"• Estimated debt payoff: {debt_payoff_months:.0f} months with aggressive payments\n"
-            response += f"• Save for {months_to_save:.0f} months for full payment\n"
-            response += "• Better negotiating position with cash\n"
-            response += "• Avoid interest payments\n\n"
-        
-        # Option 3: If they must buy now
-        if price > current_balance:
-            response += "**Option 3**: If You Must Buy Now\n"
-            down_payment = min(current_balance * 0.8, price * 0.3)
-            response += f"• Large down payment (Rp {down_payment:,.0f})\n"
-            response += "• Shop for best interest rates\n"
-            response += "• Consider certified pre-owned options\n"
-            response += "• Ensure warranty coverage\n\n"
-        
-        # Final recommendation
-        response += "🎯 **Recommendation**: "
-        if total_debt > income * 6:  # High debt
-            response += "Focus on debt payoff first, then consider this purchase. This approach saves thousands in interest and improves your financial position."
-        elif can_afford_now and total_debt == 0:
-            response += "You can afford this purchase! Consider setting aside 20% of the cost for maintenance and unexpected costs."
-        elif can_afford_now and total_debt > 0:
-            response += "While you can afford it, prioritizing debt payoff would save more money long-term."
+        # Simple analysis
+        if can_afford_now:
+            response += "✅ **Kabar Baik**: Kamu bisa beli sekarang!\n\n"
         else:
-            response += "Wait and save for this purchase. Building financial stability first will give you better options and peace of mind."
+            kurang = price - current_balance
+            response += f"⚠️ **Kurang Dana**: Masih kurang Rp {kurang:,.0f}\n\n"
+        
+        # Simple options
+        response += "💡 **Pilihan untuk Kamu**:\n\n"
+        
+        if can_afford_now:
+            response += "**Pilihan 1**: Beli Sekarang\n"
+            response += f"• Sisa uang setelah beli: Rp {current_balance - price:,.0f}\n"
+            response += "• Pastikan masih ada dana darurat\n\n"
+            
+            if price > income:  # Expensive item
+                cheaper_option = price * 0.7
+                response += f"**Pilihan 2**: Cari yang Lebih Murah (sekitar Rp {cheaper_option:,.0f})\n"
+                response += "• Bisa sisihkan lebih banyak untuk tabungan\n"
+                response += "• Resiko rugi lebih kecil\n\n"
+        else:
+            # Need to save
+            kurang = price - current_balance
+            monthly_saving = max(0, income - expense)
+            if monthly_saving > 0:
+                months_needed = kurang / monthly_saving
+                response += f"**Pilihan 1**: Nabung Dulu ({months_needed:.0f} bulan)\n"
+                response += f"• Nabung Rp {monthly_saving:,.0f} per bulan\n"
+                response += "• Bisa beli cash tanpa hutang\n\n"
+            
+            if price > income * 2:  # Very expensive
+                cheaper_option = price * 0.6
+                response += f"**Pilihan 2**: Cari Alternatif Lebih Murah (Rp {cheaper_option:,.0f})\n"
+                response += "• Lebih mudah dijangkau\n"
+                response += "• Bisa beli lebih cepat\n\n"
+        
+        # Simple recommendation
+        response += "🎯 **Saran Saya**: "
+        if can_afford_now and price < income:
+            response += "Boleh beli, tapi pastikan masih ada dana darurat minimal 3 bulan pengeluaran."
+        elif can_afford_now and price >= income:
+            response += "Bisa beli, tapi pertimbangkan apakah ini kebutuhan atau keinginan. Kalau keinginan, mending nabung dulu."
+        else:
+            if monthly_saving > 0:
+                months_needed = (price - current_balance) / monthly_saving
+                response += f"Nabung dulu sekitar {months_needed:.0f} bulan. Lebih aman dan tidak ada beban hutang."
+            else:
+                response += "Cari cara untuk mengurangi pengeluaran atau tambah pendapatan dulu sebelum beli ini."
         
         return response

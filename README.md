@@ -15,25 +15,24 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 
 ## ✨ Fitur
 
-### Core Features
+### Fitur Utama
 
-- 📊 **Transaction Tracking**: Pencatatan pemasukan dan pengeluaran real-time
-- 💰 **Auto Categorization**: Kategori transaksi otomatis berdasarkan deskripsi
-- 📈 **Financial Reports**: Laporan keuangan per kategori dengan breakdown
-- 🔄 **Reflection Engine**: Kata ganti untuk interaksi natural (saya↔kamu)
-- 🤖 **Regex-Based Rules**: Sistem parsing perintah dengan 30+ pattern variations
+- 📊 **Pencatatan Transaksi**: Pencatatan pemasukan dan pengeluaran real-time
+- 💰 **Kategorisasi Otomatis**: Kategori transaksi otomatis berdasarkan deskripsi
+- 📈 **Laporan Keuangan**: Laporan keuangan per kategori dengan breakdown
+- 🔄 **Mesin Refleksi**: Kata ganti untuk interaksi natural (saya↔kamu)
+- 🤖 **Sistem Regex**: Sistem parsing perintah dengan 30+ variasi pattern
 
-### 🆕 NEW: Financial Analysis Features
+### 🆕 NEW: Fitur Analisis Keuangan
 
-- 🏦 **Budget Advice**: Personal budget recommendations with 50/30/20 allocation strategy
-- 🛍️ **Purchase Planning**: Smart purchase analysis with debt consideration and alternatives
-- 📊 **Financial Health Assessment**: Automated financial health scoring and recommendations
-- 💡 **Multi-language Analysis**: Support for both Indonesian and English financial queries
+- 🏦 **Saran Anggaran**: Rekomendasi anggaran bulanan yang sederhana dan mudah dipahami
+- 🛍️ **Analisis Pembelian**: Analisis rencana pembelian dengan pertimbangan kemampuan finansial
+- 📊 **Evaluasi Keuangan**: Penilaian kesehatan keuangan otomatis dengan saran praktis
+- 💡 **Konsultasi Finansial**: Bantuan perencanaan keuangan dalam bahasa Indonesia
 
 ### Language Support
 
-- 🇮🇩 **Bahasa Indonesia**: "saya dapat gaji 5000000 dari kantor"
-- 🇺🇸 **English**: "Help me create a budget" / "I want to buy a $30000 car"
+- 🇮🇩 **Bahasa Indonesia**: "saya dapat gaji 5000000 dari kantor", "bantuan anggaran saya", "saya mau beli mobil 50000000"
 
 ### Smart Features
 
@@ -42,15 +41,15 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 - 📋 **Rich Formatting**: Response dengan emoji dan formatting yang menarik
 - 👥 **Multi-User Support**: Data terpisah per user dengan privacy
 
-## 🚀 Setup & Installation
+## 🚀 Setup & Instalasi
 
-### Prerequisites
+### Persyaratan Sistem
 
 - Python 3.8+
 - Discord Bot Token
-- Virtual Environment (recommended)
+- Virtual Environment (direkomendasikan)
 
-### Quick Start
+### Panduan Instalasi
 
 1. **Clone Repository**
 
@@ -77,7 +76,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Configure Environment**
+4. **Konfigurasi Environment**
 
 ```bash
 # Copy template dan edit dengan token bot Anda
@@ -174,9 +173,9 @@ Bot hanya akan merespons ketika di-mention. Contoh:
 @FinancialBot !help          # Panduan lengkap
 ```
 
-## 🧪 Testing
+## 🧪 Pengujian
 
-### Run Tests
+### Menjalankan Test
 
 ```bash
 # Windows
@@ -190,144 +189,149 @@ chmod +x run_tests.sh
 python -m pytest tests/ -v
 ```
 
-### Test Coverage
+### Cakupan Test
 
-- **30+ test cases** covering all functionality
-- **Unit Tests**: Rules engine, database operations
-- **Integration Tests**: End-to-end transaction flows
-- **Edge Cases**: Invalid inputs, error handling
+- **30+ test cases** yang mencakup semua fungsi
+- **Unit Tests**: Rules engine, operasi database
+- **Integration Tests**: Alur transaksi end-to-end
+- **Edge Cases**: Input tidak valid, error handling
 
-## 🎯 Feature Examples
+## 🎯 Contoh Fitur
 
-### Budget Advice Example
+### Contoh Saran Anggaran
 
 ```
-You: Help me create a budget
+Anda: bantuan anggaran saya
 
 MoGre Financial Assistant:
-💰 **Monthly Budget Breakdown**:
-• **Income**: Rp 6,250,000
-• **Expenses**: Rp 4,500,000
-• **Available**: Rp 1,750,000
+💰 **Ringkasan Keuangan Bulanan**:
+• **Pemasukan**: Rp 6,250,000
+• **Pengeluaran**: Rp 4,500,000
+• **Sisa Uang**: Rp 1,750,000
 
-📊 **Recommended Allocation**:
-• **Emergency Fund**: Rp 625,000 (10% of income)
-• **Debt Payments**: Rp 875,000
-• **Retirement**: Rp 375,000 (6% of income)
-• **Goals/Fun**: Rp 0
+📊 **Saran Penggunaan Sisa Uang**:
+• **Dana Darurat**: Rp 937,500 (15% dari pemasukan)
+• **Tabungan**: Rp 1,875,000 (30% dari pemasukan)
 
-⚠️ **Budget Concerns**: You're spending 72% of income on expenses, which is reasonable, but prioritize debt payoff with your surplus.
-
-💡 **Next Steps**:
-• Build emergency fund (3-6 months expenses)
-• Pay off high-interest debt
-• Increase retirement contributions
+💡 **Rekomendasi**:
+Prioritaskan dana darurat dan tabungan secara seimbang untuk keamanan finansial jangka panjang.
 ```
 
-### Purchase Planning Example
+### Contoh Analisis Pembelian
 
 ```
-You: I want to buy a $30000 car
+Anda: saya mau beli mobil 30000000
 
 MoGre Financial Assistant:
-🛍️ **Car Purchase Analysis**:
+🛍️ **Analisis Beli Mobil**:
 
-**Purchase Price**: Rp 30,000,000
-**Monthly Income**: Rp 6,250,000
-**Current Balance**: Rp 1,750,000
+**Harga**: Rp 30,000,000
+**Pemasukan Bulanan**: Rp 6,250,000
+**Sisa Uang**: Rp 1,750,000
 
-💡 **Alternatives to Consider**:
+💡 **Pilihan yang Tersedia**:
 
-**Option 1**: Lower Cost Alternative (Rp 18,000,000)
-• Reduces financial pressure
-• Allows for emergency fund building
-• Less depreciation risk
+**Pilihan 1**: Alternatif Lebih Murah (Rp 18,000,000)
+• Mengurangi beban finansial
+• Lebih sesuai dengan kemampuan saat ini
 
-**Option 2**: Wait & Save
-• Save for 16 months for full payment
-• Better negotiating position with cash
-• Avoid interest payments
+**Pilihan 2**: Menabung Dulu
+• Tabung selama 16 bulan untuk bayar tunai
+• Menghindari beban cicilan bulanan
 
-**Option 3**: If You Must Buy Now
+**Pilihan 3**: Jika Harus Beli Sekarang
+```
+
 • Large down payment (Rp 1,400,000)
 • Shop for best interest rates
 • Consider certified pre-owned options
 • Ensure warranty coverage
 
 🎯 **Recommendation**: Wait and save for this purchase. Building financial stability first will give you better options and peace of mind.
-```
-
-## 🏗️ Project Structure
 
 ```
+
+## 🏗️ Struktur Proyek
+
+```
+
 FinancialBot/
-├── 📁 core/                    # Core bot logic
-│   ├── bot_core.py            # Main bot integration
-│   ├── rules.py               # Regex patterns & reflection
-│   ├── database.py            # SQLite database manager
-│   └── __init__.py
-├── 📁 tests/                  # Comprehensive test suite
-│   ├── test_rules.py          # Rules engine tests
-│   ├── test_database.py       # Database tests
-│   ├── test_integration.py    # Integration tests
-│   └── run_tests.py
-├── 📁 demo/                   # Demo screenshots & scenarios
-├── 📁 logs/                   # Application logs
-├── bot.py                     # Discord bot main entry
-├── cli_runner.py              # CLI testing interface
-├── requirements.txt           # Python dependencies
-├── .env.example              # Environment template
-├── SETUP.md                  # Detailed setup guide
-├── PRESENTATION.md           # Technical presentation
-└── README.md                 # This file
-```
-
-## 📊 Demo Examples
-
-### Income Tracking
+├── 📁 core/ # Core bot logic
+│ ├── bot_core.py # Main bot integration
+│ ├── rules.py # Regex patterns & reflection
+│ ├── database.py # SQLite database manager
+│ └── **init**.py
+├── 📁 tests/ # Comprehensive test suite
+│ ├── test_rules.py # Rules engine tests
+│ ├── test_database.py # Database tests
+│ ├── test_integration.py # Integration tests
+│ └── run_tests.py
+├── 📁 demo/ # Demo screenshots & scenarios
+├── 📁 logs/ # Application logs
+├── bot.py # Discord bot main entry
+├── cli_runner.py # CLI testing interface
+├── requirements.txt # Python dependencies
+├── .env.example # Environment template
+├── SETUP.md # Detailed setup guide
+├── PRESENTATION.md # Technical presentation
+└── README.md # This file
 
 ```
+
+## 📊 Contoh Demo
+
+### Pencatatan Pemasukan
+
+```
+
 User: @FinancialBot saya dapat gaji 5000000 dari kantor
-Bot:  Baik! Saya telah mencatat pemasukan kamu sebesar Rp 5,000,000
-      untuk kategori 'gaji' dengan deskripsi 'dari kantor'.
-      💰 Saldo terbaru: Rp 5,000,000
-```
-
-### Expense Tracking
+Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 5,000,000
+untuk kategori 'gaji' dengan deskripsi 'dari kantor'.
+💰 Saldo terbaru: Rp 5,000,000
 
 ```
+
+### Pencatatan Pengeluaran
+
+```
+
 User: @FinancialBot habis 50000 makan siang
-Bot:  Oke! Saya sudah catat pengeluaran kamu sebesar Rp 50,000
-      untuk kategori 'makanan'.
-      💰 Saldo terbaru: Rp 4,950,000
-```
-
-### Balance Report
+Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 50,000
+untuk kategori 'makanan'.
+💰 Saldo terbaru: Rp 4,950,000
 
 ```
+
+### Laporan Saldo
+
+```
+
 User: @FinancialBot berapa saldo saya?
-Bot:  💰 **Ringkasan Keuangan Kamu:**
-      • Pemasukan: Rp 5,000,000
-      • Pengeluaran: Rp 50,000
-      • Saldo: Rp 4,950,000 (positif)
+Bot: 💰 **Ringkasan Keuangan Kamu:**
+• Pemasukan: Rp 5,000,000
+• Pengeluaran: Rp 50,000
+• Saldo: Rp 4,950,000 (positif)
 
       📋 **5 Transaksi Terakhir:**
       1. 💸 Rp 50,000 - makanan
       2. 💚 Rp 5,000,000 - gaji (dari kantor)
+
 ```
 
 ### Conversation
 
 ```
+
 User: @FinancialBot siapa kamu?
-Bot:  👋 Hai! Saya adalah **Financial Bot**, asisten keuangan pintar untuk Discord!
+Bot: 👋 Hai! Saya adalah **Financial Bot**, asisten keuangan pintar untuk Discord!
 
       🤖 **Tentang Saya:**
       • Nama: Financial Bot
       • Fungsi: Membantu melacak pemasukan dan pengeluaran
       • Bahasa: Indonesia
       • Dibuat dengan: Python
-```
+
+````
 
 ## 🔍 Advanced Features
 
@@ -339,7 +343,7 @@ Bot:  👋 Hai! Saya adalah **Financial Bot**, asisten keuangan pintar untuk Dis
 "bayar listrik bulan ini" → kategori: tagihan
 "bensin motor" → kategori: transport
 "gaji dari kantor" → kategori: gaji
-```
+````
 
 ### Reflection Engine
 
