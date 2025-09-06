@@ -278,27 +278,6 @@ Output: "Baik! Saya telah mencatat pemasukan kamu..."
 ✅ dapat 1000000 projek                    # Simple format
 ```
 
-## 🤝 Contributing
-
-1. Fork repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Run tests: `python -m pytest tests/`
-4. Commit changes: `git commit -m 'Add amazing feature'`
-5. Push branch: `git push origin feature/amazing-feature`
-6. Create Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support
-
-- 📖 **Documentation**: [SETUP.md](SETUP.md), [PRESENTATION.md](PRESENTATION.md)
-- 🐛 **Issues**: Create GitHub issue untuk bug reports
-- 💡 **Feature Requests**: Open discussion untuk feature baru
-
----
-
 **Financial Bot Discord** - Intelligent financial assistant yang memahami bahasa natural Indonesia dan memberikan insights keuangan real-time melalui platform Discord yang familiar.
 
 🚀 **Ready to manage your finances smartly? Just mention @FinancialBot and start tracking!**
