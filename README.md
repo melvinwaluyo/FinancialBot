@@ -1,3 +1,9 @@
+# Pemrosesan Bahasa Alami - Kelas A | Dosen: Syukron Abu Ishaq Alfarozi, S.T., Ph.D.
+
+## Melvin Waluyo (22/492978/TK/53955)
+
+## Muhammad Grandiv Lava Putra (22/493242/TK/54023)
+
 # Financial Bot Discord
 
 Bot Discord untuk melacak pemasukan dan pengeluaran keuangan menggunakan Python dengan sistem berbasis aturan (regex), reflection kata ganti, dan natural language processing bahasa Indonesia.
