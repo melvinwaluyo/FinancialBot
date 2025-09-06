@@ -1,94 +1,118 @@
-# Demo Financial Bot Discord
+# Demo Financial Bot Discord - Bahasa Indonesia
 
-## Setup Discord Bot
+## 🎯 Fitur Utama yang Didemo
 
-### 1. Discord Developer Portal
+### 🇮🇩 **Indonesian Implementation**
 
-```
-1. Buka https://discord.com/developers/applications
-2. Klik "New Application"
-3. Nama: "Financial Bot"
-4. Ke tab "Bot" → "Add Bot"
-5. Copy Token untuk .env file
-6. Enable "Message Content Intent"
-```
+- ✅ Semua respon dalam bahasa Indonesia
+- ✅ Pattern matching bahasa natural Indonesia
+- ✅ Analisis keuangan yang sederhana dan logis
 
-### 2. Invite Bot ke Server
+### 🆕 **Fitur Analisis Keuangan**
 
-```
-OAuth2 → URL Generator
-Scopes: ☑️ bot
-Bot Permissions: ☑️ Send Messages ☑️ Read Message History
-Copy generated URL dan buka di browser
-```
+- 🏦 **Saran Anggaran**: Rekomendasi 15% dana darurat + 30% tabungan
+- 🛍️ **Analisis Pembelian**: Evaluasi kemampuan beli dengan opsi alternatif
+- 💡 **Konsultasi Finansial**: Bantuan perencanaan keuangan praktis
 
-## Demo Interaksi Bot
+## 🚀 Demo Interaksi Bot - Fitur Analisis Keuangan
 
-### Screenshot 1: Help Command
+### 🏦 Demo 1: Saran Anggaran (Fitur Baru!)
 
 ```
-User: !help
-Bot: 🤖 Financial Bot - Panduan Penggunaan
+User: @FinancialBot bantuan anggaran saya
 
-**Perintah Utama:**
-• !income <jumlah> <kategori> <deskripsi> - Catat pemasukan
-• !expense <jumlah> <kategori> <deskripsi> - Catat pengeluaran
-• !balance - Lihat saldo
-• !report - Laporan keuangan
-• !delete <id> - Hapus transaksi
+Bot: 📊 **Saran Anggaran**
 
-**Cara Natural:**
-• "Saya dapat gaji 5000000 dari kantor"
-• "Habis 50000 untuk makanan lunch"
-• "Berapa saldo saya?"
-• "Lihat laporan keuangan"
+Saya belum melihat pemasukan kamu. Untuk membuat anggaran yang tepat, silakan catat pemasukan dulu:
 
-**Kategori Otomatis:**
-Makanan, Transport, Hiburan, Belanja, Tagihan, Kesehatan, Pendidikan, Gaji, Freelance, Investasi, dll.
+💡 **Contoh**: "@FinancialBot saya dapat gaji 5000000 dari kantor"
+
+Setelah ada data pemasukan, saya akan berikan:
+• Dana darurat yang direkomendasikan (15% dari pemasukan)
+• Saran tabungan bulanan (30% dari pemasukan)
+• Analisis keuangan yang sederhana dan mudah dipahami
 ```
 
-### Screenshot 2: Income Command (Formal)
+### 🛍️ Demo 2: Analisis Pembelian (Fitur Baru!)
 
 ```
-User: !income 5000000 gaji bonus akhir tahun
-Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 5,000,000 untuk kategori 'gaji' dengan deskripsi 'bonus akhir tahun'.
-💰 Saldo terbaru: Rp 5,000,000
+User: @FinancialBot saya mau beli laptop 15000000
+
+Bot: 🛍️ **Analisis Beli Laptop**:
+
+**Harga Barang**: Rp 15,000,000
+**Gaji Bulanan**: Rp 5,000,000
+**Sisa Uang**: Rp 4,950,000
+
+💡 **Pilihan yang Tersedia**:
+
+**Pilihan 1**: Alternatif Lebih Murah (Rp 9,000,000)
+• Mengurangi beban finansial
+• Lebih sesuai dengan kemampuan saat ini
+
+**Pilihan 2**: Menabung Dulu
+• Tabung selama 3 bulan untuk bayar tunai
+• Menghindari beban cicilan bulanan
+
+**Pilihan 3**: Jika Harus Beli Sekarang
+• Cicilan 12 bulan: Rp 1,250,000/bulan
+• Pastikan pemasukan stabil untuk cicilan ini
 ```
 
-### Screenshot 3: Income Natural Language
+## 📊 Demo Interaksi Bot - Fitur Dasar
+
+### 💰 Demo 3: Pencatatan Pemasukan
 
 ```
-User: saya dapat freelance 1500000 dari projek website
-Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 1,500,000 untuk kategori 'freelance' dengan deskripsi 'dari projek website'.
-💰 Saldo terbaru: Rp 6,500,000
+User: @FinancialBot saya dapat gaji 5000000 dari kantor
+
+Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 5,000,000
+     untuk kategori 'gaji' dengan deskripsi 'dari kantor'.
+     💰 Saldo terbaru: Rp 5,000,000
 ```
 
-### Screenshot 4: Expense Command
+### 💸 Demo 4: Pencatatan Pengeluaran
 
 ```
-User: !expense 250000 makanan groceries bulanan
-Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 250,000 untuk kategori 'makanan' dengan deskripsi 'groceries bulanan'.
-💰 Saldo terbaru: Rp 6,250,000
+User: @FinancialBot habis 50000 makan siang
+
+Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 50,000
+     untuk kategori 'makanan'.
+     💰 Saldo terbaru: Rp 4,950,000
 ```
 
-### Screenshot 5: Expense Natural Language
+### 🔍 Demo 5: Cek Saldo
 
 ```
-User: saya habis 75000 untuk transport bensin motor
-Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 75,000 untuk kategori 'transport' dengan deskripsi 'bensin motor'.
-💰 Saldo terbaru: Rp 6,175,000
+User: @FinancialBot berapa saldo saya?
+
+Bot: 💰 **Ringkasan Keuangan Kamu:**
+     • Pemasukan: Rp 5,000,000
+     • Pengeluaran: Rp 50,000
+     • Saldo: Rp 4,950,000 (positif)
+
+     📋 **5 Transaksi Terakhir:**
+     1. 💸 Rp 50,000 - makanan
+     2. 💚 Rp 5,000,000 - gaji (dari kantor)
 ```
 
-### Screenshot 6: Auto-Categorization
+### 🏦 Demo 6: Saran Anggaran dengan Data
 
 ```
-User: beli makanan 45000
-Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 45,000 untuk kategori 'makanan'.
-💰 Saldo terbaru: Rp 6,130,000
+User: @FinancialBot bantuan anggaran saya
 
-User: bayar listrik 200000
-Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 200,000 untuk kategori 'tagihan'.
-💰 Saldo terbaru: Rp 5,930,000
+Bot: 💰 **Ringkasan Keuangan Bulanan**:
+     • **Pemasukan**: Rp 5,000,000
+     • **Pengeluaran**: Rp 50,000
+     • **Sisa Uang**: Rp 4,950,000
+
+     📊 **Saran Penggunaan Sisa Uang**:
+     • **Dana Darurat**: Rp 750,000 (15% dari pemasukan)
+     • **Tabungan**: Rp 1,500,000 (30% dari pemasukan)
+
+     💡 **Rekomendasi**:
+     Prioritaskan dana darurat dan tabungan secara seimbang untuk
+     keamanan finansial jangka panjang.
 ```
 
 ### Screenshot 7: Balance Query Variations

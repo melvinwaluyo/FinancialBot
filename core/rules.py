@@ -100,12 +100,16 @@ class FinancialRulesEngine:
             r'^(?:laporan|report)\s+(?:keuangan|finansial)$'
         ]
         
-        # Pattern untuk bantuan
+        # Pattern untuk bantuan - More specific to avoid conflicts
         self.help_patterns = [
-            r'!help',
-            r'(?:help|bantuan)',
-            r'(?:gimana|bagaimana)\s+(?:cara)',
-            r'(?:apa)\s+(?:perintah|command)'
+            r'^!help$',
+            r'^(?:help|bantuan)$',
+            r'^(?:help me)$',
+            r'^(?:bantuan dong)$',
+            r'(?:gimana|bagaimana)\s+(?:cara)$',
+            r'(?:gimana|bagaimana)\s+(?:cara)\s+(?:pakai|gunakan)',
+            r'^(?:apa)\s+(?:perintah|command)',
+            r'^(?:help|bantuan)\s+(?:dong|please|pls)$'
         ]
         
         # Pattern untuk hapus transaksi
@@ -149,27 +153,42 @@ class FinancialRulesEngine:
             r'goodbye\s*$'
         ]
         
-        # Pattern untuk budgeting advice - Pure Indonesian
+        # Pattern untuk budgeting advice - Indonesian & English
         self.budget_patterns = [
-            r'(?:bantuan|buatkan|buat)\s+(?:saya|aku)?\s*(?:buat|bikin)?\s+(?:anggaran)',
-            r'(?:saya|aku)\s+(?:mau|ingin|butuh|perlu)\s+(?:anggaran|bantuan anggaran)',
-            r'(?:gimana|bagaimana)\s+(?:cara|bikin|buat)\s+(?:anggaran)',
-            r'(?:tolong|bantuan)\s+(?:anggaran)',
-            r'(?:analisis|analisa|cek)\s+(?:anggaran)\s+(?:saya|aku)',
-            r'(?:anggaran)\s+(?:saran|rekomendasi)',
-            r'(?:buat|bikin|buatkan)\s+(?:anggaran)',
-            r'(?:bantuan)\s+(?:anggaran)',
-            r'(?:saran|rekomendasi)\s+(?:anggaran)',
-            r'(?:konsultasi)\s+(?:anggaran|keuangan)'
+            # Indonesian patterns
+            r'(?:bantuan|buatkan|buat)\s+(?:saya|aku)?\s*(?:buat|bikin)?\s+(?:anggaran|budget)',
+            r'(?:saya|aku)\s+(?:mau|ingin|butuh|perlu)\s+(?:anggaran|budget|bantuan anggaran|budget advice)',
+            r'(?:gimana|bagaimana)\s+(?:cara|bikin|buat)\s+(?:anggaran|budget)',
+            r'(?:tolong|bantuan)\s+(?:anggaran|budget)',
+            r'(?:analisis|analisa|cek)\s+(?:anggaran|budget)\s+(?:saya|aku)',
+            r'(?:anggaran|budget)\s+(?:saran|rekomendasi)',
+            r'(?:buat|bikin|buatkan)\s+(?:anggaran|budget)',
+            r'(?:bantuan)\s+(?:anggaran|budget)',
+            r'(?:saran|rekomendasi)\s+(?:anggaran|budget)',
+            r'(?:konsultasi)\s+(?:anggaran|keuangan|budget)',
+            # English patterns
+            r'(?:help|create|make).*(?:budget)',
+            r'(?:budget).*(?:help|advice|recommendation|create)',
+            r'(?:i|I)\s+(?:need|want|require)\s+(?:a\s+)?(?:budget)',
+            r'(?:how to|how)\s+(?:create|make)\s+(?:a\s+)?(?:budget)',
+            r'(?:budget).*(?:planning|advice)',
+            r'(?:financial).*(?:advice|planning)',
+            r'(?:help me create a budget)'
         ]
         
-        # Pattern untuk purchasing planning - Pure Indonesian
+        # Pattern untuk purchasing planning - Indonesian & English  
         self.purchase_patterns = [
+            # Indonesian patterns
             r'(?:saya|aku)\s+(?:mau|ingin|pengen)\s+(?:beli)\s+(.+?)(?:\s+(?:harga|seharga)?\s*(\d+(?:,?\d+)*))?',
             r'(?:mau|ingin|pengen)\s+(?:beli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
             r'(?:rencana)\s+(?:beli|membeli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
             r'(?:analisis|analisa)\s+(?:beli)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
-            r'(?:konsultasi)\s+(?:beli|pembelian)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?'
+            r'(?:konsultasi)\s+(?:beli|pembelian)\s+(.+?)(?:\s+(?:Rp)?\s*(\d+(?:,?\d+)*))?',
+            # English patterns
+            r'(?:i|I)\s+(?:want to|wanna)\s+(?:buy)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:buying|purchase)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:planning to buy)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?',
+            r'(?:can i buy)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?'
         ]
     
     def parse_amount(self, amount_str: str) -> float:

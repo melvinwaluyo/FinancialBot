@@ -68,8 +68,8 @@ class TestNewFeatures(unittest.TestCase):
     def test_budget_advice_without_data(self):
         """Test budget advice when user has no financial data"""
         response = self.bot.process_message(self.user_id, self.username, "Help me create a budget")
-        self.assertIn("Budget Advice", response)
-        self.assertIn("pemasukan Anda", response)
+        self.assertIn("Saran Anggaran", response)
+        self.assertIn("pemasukan kamu", response)
     
     def test_budget_advice_with_data(self):
         """Test budget advice with existing financial data"""
@@ -80,22 +80,22 @@ class TestNewFeatures(unittest.TestCase):
         # Request budget advice
         response = self.bot.process_message(self.user_id, self.username, "Help me create a budget")
         
-        # Check response content
-        self.assertIn("Monthly Budget Breakdown", response)
-        self.assertIn("Income", response)
-        self.assertIn("Expenses", response)
-        self.assertIn("Available", response)
-        self.assertIn("Emergency Fund", response)
-        self.assertIn("Retirement", response)
+        # Check response content - Indonesian responses
+        self.assertIn("Ringkasan Keuangan", response)
+        self.assertIn("Pemasukan", response)
+        self.assertIn("Pengeluaran", response)
+        self.assertIn("Sisa", response)
+        self.assertIn("Dana Darurat", response)
+        self.assertIn("investasi", response)
         self.assertIn("6,250,000", response)
         self.assertIn("4,500,000", response)
     
     def test_purchase_planning_without_data(self):
         """Test purchase planning when user has no financial data"""
         response = self.bot.process_message(self.user_id, self.username, "I want to buy a car 30000000")
-        self.assertIn("Car Purchase Analysis", response)
+        self.assertIn("Analisis Beli", response)
         self.assertIn("30,000,000", response)
-        self.assertIn("Alternatives to Consider", response)
+        self.assertIn("Pilihan", response)
     
     def test_purchase_planning_with_data(self):
         """Test purchase planning with existing financial data"""
@@ -107,13 +107,13 @@ class TestNewFeatures(unittest.TestCase):
         response = self.bot.process_message(self.user_id, self.username, "I want to buy a car 30000000")
         
         # Check response content
-        self.assertIn("Car Purchase Analysis", response)
-        self.assertIn("Purchase Price", response)
+        self.assertIn("Analisis Beli", response)
+        self.assertIn("Harga Barang", response)
         self.assertIn("30,000,000", response)
-        self.assertIn("Monthly Income", response)
+        self.assertIn("Gaji Bulanan", response)
         self.assertIn("6,250,000", response)
-        self.assertIn("Alternatives to Consider", response)
-        self.assertIn("Recommendation", response)
+        self.assertIn("Pilihan untuk Kamu", response)
+        self.assertIn("Saran Saya", response)
     
     def test_purchase_planning_expensive_item(self):
         """Test purchase planning for expensive items relative to income"""
@@ -124,10 +124,10 @@ class TestNewFeatures(unittest.TestCase):
         response = self.bot.process_message(self.user_id, self.username, "I want to buy a house 500000000")
         
         # Should contain warnings about the expensive purchase
-        self.assertIn("House Purchase Analysis", response)
+        self.assertIn("Analisis Beli", response)
         self.assertIn("500,000,000", response)
-        self.assertIn("Lower Cost Alternative", response)
-        self.assertIn("Wait & Save", response)
+        self.assertIn("Pilihan", response)
+        self.assertIn("Nabung Dulu", response)
     
     def test_budget_advice_different_languages(self):
         """Test budget advice in both Indonesian and English"""
@@ -137,11 +137,11 @@ class TestNewFeatures(unittest.TestCase):
         
         # Test English
         response_en = self.bot.process_message(self.user_id, self.username, "Help me create a budget")
-        self.assertIn("Budget Breakdown", response_en)
+        self.assertIn("Ringkasan Keuangan", response_en)
         
         # Test Indonesian
         response_id = self.bot.process_message(self.user_id, self.username, "bantuan budget saya")
-        self.assertIn("Budget Breakdown", response_id)
+        self.assertIn("Ringkasan Keuangan", response_id)
         
         # Both should contain similar financial information
         self.assertIn("5,000,000", response_en)
@@ -154,15 +154,15 @@ class TestNewFeatures(unittest.TestCase):
         
         # Test English
         response_en = self.bot.process_message(self.user_id, self.username, "I want to buy a laptop 10000000")
-        self.assertIn("Laptop Purchase Analysis", response_en)
+        self.assertIn("Analisis Beli", response_en)
         
         # Test Indonesian  
         response_id = self.bot.process_message(self.user_id, self.username, "saya mau beli motor 20000000")
-        self.assertIn("Motor Purchase Analysis", response_id)
+        self.assertIn("Analisis Beli", response_id)
         
         # Both should contain analysis
-        self.assertIn("Recommendation", response_en)
-        self.assertIn("Recommendation", response_id)
+        self.assertIn("Saran Saya", response_en)
+        self.assertIn("Saran Saya", response_id)
 
 if __name__ == '__main__':
     unittest.main()
