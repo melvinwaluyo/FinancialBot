@@ -11,7 +11,7 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 - **Pencatatan Keuangan Manual**: Kesulitan mencatat pemasukan dan pengeluaran secara konsisten
 - **Platform Terpisah**: Harus buka aplikasi khusus untuk mencatat keuangan
 - **Kompleksitas Interface**: Aplikasi keuangan sering rumit untuk penggunaan sehari-hari
-- **Kurang Interaktif**: Tidak ada feedback real-time atau reminder
+- **Kurang Interaktif**: Tidak ada feedback real-time, reminder, atau analisis
 
 ## ✨ Fitur
 
@@ -22,9 +22,6 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 - 📈 **Laporan Keuangan**: Laporan keuangan per kategori dengan breakdown
 - 🔄 **Mesin Refleksi**: Kata ganti untuk interaksi natural (saya↔kamu)
 - 🤖 **Sistem Regex**: Sistem parsing perintah dengan 30+ variasi pattern
-
-### 🆕 NEW: Fitur Analisis Keuangan
-
 - 🏦 **Saran Anggaran**: Rekomendasi anggaran bulanan yang sederhana dan mudah dipahami
 - 🛍️ **Analisis Pembelian**: Analisis rencana pembelian dengan pertimbangan kemampuan finansial
 - 📊 **Evaluasi Keuangan**: Penilaian kesehatan keuangan otomatis dengan saran praktis
@@ -32,7 +29,7 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 
 ### Language Support
 
-- 🇮🇩 **Bahasa Indonesia**: "saya dapat gaji 5000000 dari kantor", "bantuan anggaran saya", "saya mau beli mobil 50000000"
+- 🇮🇩 **Bahasa Indonesia**
 
 ### Smart Features
 
@@ -104,6 +101,7 @@ Bot hanya akan merespons ketika di-mention. Contoh:
 @FinancialBot !income 5000000 gaji
 @FinancialBot saya habis 50000 untuk makan
 @FinancialBot berapa saldo saya?
+@FinancialBot saya ingin membeli mobil 300000000
 ```
 
 ### Command Format
