@@ -26,7 +26,6 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 ### Language Support
 
 - 🇮🇩 **Bahasa Indonesia**: "saya dapat gaji 5000000 dari kantor"
-- 💬 **Natural Conversation**: "siapa kamu?", "apa yang bisa kamu lakukan?"
 
 ### Smart Features
 
@@ -247,7 +246,7 @@ Bot:  👋 Hai! Saya adalah **Financial Bot**, asisten keuangan pintar untuk Dis
       • Nama: Financial Bot
       • Fungsi: Membantu melacak pemasukan dan pengeluaran
       • Bahasa: Indonesia
-      • Dibuat dengan: Python & Love ❤️
+      • Dibuat dengan: Python
 ```
 
 ## 🔍 Advanced Features

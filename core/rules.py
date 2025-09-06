@@ -339,7 +339,7 @@ class FinancialRulesEngine:
                    "• Nama: Financial Bot\n"
                    "• Fungsi: Membantu melacak pemasukan dan pengeluaran\n"
                    "• Bahasa: Indonesia\n"
-                   "• Dibuat dengan: Python & Love ❤️\n\n"
+                   "• Dibuat dengan: Python \n\n"
                    "💡 Saya bisa memahami bahasa natural Indonesia, jadi kamu bisa bicara santai denganku!\n"
                    "Ketik `!help` untuk melihat semua yang bisa saya lakukan.")
         
