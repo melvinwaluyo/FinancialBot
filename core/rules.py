@@ -63,8 +63,8 @@ class FinancialRulesEngine:
             r'!income\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
             # Pattern natural: saya dapat gaji 5000000 dari kantor
             r'(?:saya|aku)\s+(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\w+)\s+(\d+(?:\.\d+)?)\s*(?:dari\s+(.+))?',
-            # Pattern: dapat 500000 freelance
-            r'(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
+            # Pattern: dapat 50000 dari ortu (FIXED: swap amount and category order)
+            r'(?:dapat|terima|dapet|menerima|meraih|peroleh)\s+(\d+(?:\.\d+)?)\s+(?:dari\s+)?(\w+)(?:\s+(.+))?',
             # Pattern: income 1000000 kategori deskripsi
             r'(?:income|pemasukan|masuk)\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?'
         ]
@@ -219,6 +219,22 @@ class FinancialRulesEngine:
             category = groups[0].lower()
             amount = self.parse_amount(groups[1])
             description = groups[2] if len(groups) > 2 and groups[2] else ""
+        elif text.lower().startswith(('dapat', 'terima', 'dapet', 'menerima', 'meraih', 'peroleh')) and not text.lower().startswith('!'):
+            # Pattern: dapat 50000 dari ortu (amount first, then category)
+            amount = self.parse_amount(groups[0])
+            # Check if "dari" is in the text to extract category correctly
+            if 'dari' in text.lower():
+                # Extract category from the "dari X" part
+                dari_match = re.search(r'dari\s+(\w+)', text.lower())
+                if dari_match:
+                    category = dari_match.group(1)
+                    description = ""
+                else:
+                    category = groups[1].lower() if len(groups) >= 2 and groups[1] else "lainnya"
+                    description = groups[2] if len(groups) > 2 and groups[2] else ""
+            else:
+                category = groups[1].lower() if len(groups) >= 2 and groups[1] else "lainnya"
+                description = groups[2] if len(groups) > 2 and groups[2] else ""
         else:
             # Standard: amount category description
             amount = self.parse_amount(groups[0])

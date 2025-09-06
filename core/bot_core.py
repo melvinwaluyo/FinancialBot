@@ -173,29 +173,32 @@ class FinancialBotCore:
         response += f"💸 **Total Pengeluaran**: Rp {balance_info['expense']:,.0f}\n"
         response += f"📈 **Saldo**: Rp {balance_info['balance']:,.0f}\n\n"
         
-        # Category breakdown
-        response += "**📋 Breakdown per Kategori:**\n"
+        # Separate income and expense categories
+        income_categories = {}
+        expense_categories = {}
         
-        # Sort by total activity (income + expense)
-        sorted_categories = sorted(
-            category_report.items(),
-            key=lambda x: x[1]['income'] + x[1]['expense'],
-            reverse=True
-        )
+        for category, amounts in category_report.items():
+            if amounts['income'] > 0:
+                income_categories[category] = amounts['income']
+            if amounts['expense'] > 0:
+                expense_categories[category] = amounts['expense']
         
-        for category, amounts in sorted_categories:
-            income = amounts['income']
-            expense = amounts['expense']
-            net = income - expense
-            
-            response += f"\n**{category.title()}:**"
-            if income > 0:
-                response += f"\n  💚 Masuk: Rp {income:,.0f}"
-            if expense > 0:
-                response += f"\n  💸 Keluar: Rp {expense:,.0f}"
-            if income > 0 and expense > 0:
-                net_emoji = "📈" if net >= 0 else "📉"
-                response += f"\n  {net_emoji} Net: Rp {net:,.0f}"
+        # Display Income section
+        if income_categories:
+            response += "**💚 Pemasukan:**\n"
+            # Sort by amount (highest first)
+            sorted_income = sorted(income_categories.items(), key=lambda x: x[1], reverse=True)
+            for category, amount in sorted_income:
+                response += f"• {category.title()}: Rp {amount:,.0f}\n"
+            response += "\n"
+        
+        # Display Expense section
+        if expense_categories:
+            response += "**💸 Pengeluaran:**\n"
+            # Sort by amount (highest first)
+            sorted_expense = sorted(expense_categories.items(), key=lambda x: x[1], reverse=True)
+            for category, amount in sorted_expense:
+                response += f"• {category.title()}: Rp {amount:,.0f}\n"
         
         return response
     
