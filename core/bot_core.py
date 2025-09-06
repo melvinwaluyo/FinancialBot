@@ -58,6 +58,12 @@ class FinancialBotCore:
             elif command_type == 'delete':
                 return self._handle_delete(user_id, command_result)
             
+            elif command_type == 'budget_advice':
+                return self._handle_budget_advice(user_id, command_result)
+            
+            elif command_type == 'purchase_planning':
+                return self._handle_purchase_planning(user_id, command_result)
+            
             elif command_type == 'help':
                 return self.rules_engine.generate_response(command_result)
             
@@ -226,6 +232,75 @@ class FinancialBotCore:
             return f"✅ Transaksi ID {transaction_id} berhasil dihapus."
         else:
             return f"❌ Gagal menghapus transaksi ID {transaction_id}."
+    
+    def _handle_budget_advice(self, user_id: str, command_result: Dict[str, Any]) -> str:
+        """Handle budget advice request"""
+        # Get comprehensive user financial data
+        user_data = self._get_comprehensive_user_data(user_id)
+        
+        self.logger.info(f"Budget advice requested by {user_id}")
+        return self.rules_engine.generate_response(command_result, user_data)
+    
+    def _handle_purchase_planning(self, user_id: str, command_result: Dict[str, Any]) -> str:
+        """Handle purchase planning request"""
+        # Get comprehensive user financial data
+        user_data = self._get_comprehensive_user_data(user_id)
+        
+        item = command_result.get('item', 'item')
+        price = command_result.get('price', 0)
+        self.logger.info(f"Purchase planning requested by {user_id} for {item} at Rp {price:,.0f}")
+        
+        return self.rules_engine.generate_response(command_result, user_data)
+    
+    def _get_comprehensive_user_data(self, user_id: str) -> Dict[str, Any]:
+        """Get comprehensive user data for financial analysis"""
+        balance_info = self.db.get_user_balance(user_id)
+        recent_transactions = self.db.get_user_transactions(user_id, limit=50)
+        category_report = self.db.get_category_report(user_id)
+        
+        # Calculate debt information from transactions
+        debt_categories = ['tagihan', 'cicilan', 'hutang', 'debt', 'loan', 'credit']
+        debt_transactions = []
+        total_debt = 0
+        
+        for trans in recent_transactions:
+            if trans['type'] == 'expense' and any(debt_cat in trans['category'].lower() or 
+                                                  debt_cat in trans['description'].lower() 
+                                                  for debt_cat in debt_categories):
+                debt_transactions.append(trans)
+                total_debt += trans['amount']
+        
+        # Estimate monthly income and expenses (using recent transaction patterns)
+        monthly_income = 0
+        monthly_expense = 0
+        
+        # Simple estimation: if we have transactions, estimate monthly based on recent data
+        if recent_transactions:
+            income_sum = sum(t['amount'] for t in recent_transactions if t['type'] == 'income')
+            expense_sum = sum(t['amount'] for t in recent_transactions if t['type'] == 'expense')
+            
+            # If we have multiple transactions, try to estimate monthly values
+            if len(recent_transactions) > 5:
+                monthly_income = income_sum / max(1, len([t for t in recent_transactions if t['type'] == 'income'])) if income_sum > 0 else 0
+                monthly_expense = expense_sum / max(1, len([t for t in recent_transactions if t['type'] == 'expense'])) if expense_sum > 0 else 0
+            else:
+                monthly_income = income_sum
+                monthly_expense = expense_sum
+        
+        return {
+            'balance': {
+                'income': monthly_income or balance_info['income'],
+                'expense': monthly_expense or balance_info['expense'],
+                'balance': balance_info['balance']
+            },
+            'recent_transactions': recent_transactions,
+            'category_report': category_report,
+            'debt_info': {
+                'debt_transactions': debt_transactions,
+                'total_debt': total_debt
+            },
+            'transaction_count': len(recent_transactions)
+        }
     
     def get_user_stats(self, user_id: str) -> Dict[str, Any]:
         """Get statistik lengkap user"""

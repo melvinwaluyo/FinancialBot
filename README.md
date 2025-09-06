@@ -23,9 +23,17 @@ Financial Bot dirancang untuk membantu pengguna mengelola keuangan pribadi atau 
 - 🔄 **Reflection Engine**: Kata ganti untuk interaksi natural (saya↔kamu)
 - 🤖 **Regex-Based Rules**: Sistem parsing perintah dengan 30+ pattern variations
 
+### 🆕 NEW: Financial Analysis Features
+
+- 🏦 **Budget Advice**: Personal budget recommendations with 50/30/20 allocation strategy
+- 🛍️ **Purchase Planning**: Smart purchase analysis with debt consideration and alternatives
+- 📊 **Financial Health Assessment**: Automated financial health scoring and recommendations
+- 💡 **Multi-language Analysis**: Support for both Indonesian and English financial queries
+
 ### Language Support
 
 - 🇮🇩 **Bahasa Indonesia**: "saya dapat gaji 5000000 dari kantor"
+- 🇺🇸 **English**: "Help me create a budget" / "I want to buy a $30000 car"
 
 ### Smart Features
 
@@ -135,6 +143,22 @@ Bot hanya akan merespons ketika di-mention. Contoh:
 @FinancialBot laporan keuangan
 ```
 
+#### 🆕 Budget Advice & Purchase Planning
+
+```bash
+# Budget Advice
+@FinancialBot help me create a budget
+@FinancialBot bantuan budget saya
+@FinancialBot buatkan budget
+@FinancialBot analisis budget saya
+
+# Purchase Planning
+@FinancialBot I want to buy a $30000 car
+@FinancialBot saya mau beli laptop 15000000
+@FinancialBot I want to buy a house 500000000
+@FinancialBot analisis beli motor 25000000
+```
+
 #### 🤖 Conversation
 
 ```bash
@@ -172,6 +196,66 @@ python -m pytest tests/ -v
 - **Unit Tests**: Rules engine, database operations
 - **Integration Tests**: End-to-end transaction flows
 - **Edge Cases**: Invalid inputs, error handling
+
+## 🎯 Feature Examples
+
+### Budget Advice Example
+
+```
+You: Help me create a budget
+
+MoGre Financial Assistant:
+💰 **Monthly Budget Breakdown**:
+• **Income**: Rp 6,250,000
+• **Expenses**: Rp 4,500,000
+• **Available**: Rp 1,750,000
+
+📊 **Recommended Allocation**:
+• **Emergency Fund**: Rp 625,000 (10% of income)
+• **Debt Payments**: Rp 875,000
+• **Retirement**: Rp 375,000 (6% of income)
+• **Goals/Fun**: Rp 0
+
+⚠️ **Budget Concerns**: You're spending 72% of income on expenses, which is reasonable, but prioritize debt payoff with your surplus.
+
+💡 **Next Steps**:
+• Build emergency fund (3-6 months expenses)
+• Pay off high-interest debt
+• Increase retirement contributions
+```
+
+### Purchase Planning Example
+
+```
+You: I want to buy a $30000 car
+
+MoGre Financial Assistant:
+🛍️ **Car Purchase Analysis**:
+
+**Purchase Price**: Rp 30,000,000
+**Monthly Income**: Rp 6,250,000
+**Current Balance**: Rp 1,750,000
+
+💡 **Alternatives to Consider**:
+
+**Option 1**: Lower Cost Alternative (Rp 18,000,000)
+• Reduces financial pressure
+• Allows for emergency fund building
+• Less depreciation risk
+
+**Option 2**: Wait & Save
+• Save for 16 months for full payment
+• Better negotiating position with cash
+• Avoid interest payments
+
+**Option 3**: If You Must Buy Now
+• Large down payment (Rp 1,400,000)
+• Shop for best interest rates
+• Consider certified pre-owned options
+• Ensure warranty coverage
+
+🎯 **Recommendation**: Wait and save for this purchase. Building financial stability first will give you better options and peace of mind.
+```
 
 ## 🏗️ Project Structure
 
