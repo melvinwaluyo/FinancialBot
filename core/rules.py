@@ -74,9 +74,9 @@ class FinancialRulesEngine:
             # Pattern: !expense 50000 makanan makan siang
             r'!expense\s+(\d+(?:\.\d+)?)\s+(\w+)(?:\s+(.+))?',
             # Pattern natural: saya habis 50000 untuk makanan
-            r'(?:saya|aku)\s+(?:habis|keluar|bayar|beli|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
+            r'(?:saya|aku)\s+(?:habis|abis|keluar|bayar|beli|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
             # Pattern: keluar 75000 transport
-            r'(?:keluar|habis|bayar|beli|expense|pengeluaran|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
+            r'(?:keluar|habis|abis|bayar|beli|expense|pengeluaran|menghabiskan|mengeluarkan|belanja|pakai|gunakan)\s+(\d+(?:\.\d+)?)\s+(?:untuk\s+)?(\w+)(?:\s+(.+))?',
             # Pattern: beli makanan 25000
             r'(?:beli|bayar|belanja)\s+(\w+)\s+(\d+(?:\.\d+)?)(?:\s+(.+))?'
         ]
