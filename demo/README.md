@@ -35,6 +35,10 @@ Bot: 👋 Hai! Saya adalah Financial Bot, asisten keuangan pintar untuk Discord!
 Ketik !help untuk melihat semua yang bisa saya lakukan.
 ```
 
+#### Screenshot
+
+![Sapaan](img/1.png)
+
 ### ❗ Demo 2: Bantuan
 
 ```
@@ -70,6 +74,10 @@ Kategori Otomatis:
 Makanan, Transport, Hiburan, Belanja, Tagihan, Kesehatan, Pendidikan, Gaji, Freelance, Investasi, dll.
 ```
 
+#### Screenshot
+
+![Bantuan](img/2.png)
+
 ### 💰 Demo 3: Pencatatan Pemasukan
 
 ```
@@ -80,6 +88,10 @@ Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 5,000,000
      💰 Saldo terbaru: Rp 5,000,000
 ```
 
+#### Screenshot
+
+![Pencatatan Pemasukan](img/3.png)
+
 ### 💸 Demo 4: Pencatatan Pengeluaran
 
 ```
@@ -89,6 +101,10 @@ Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 50,000
      untuk kategori 'makanan'.
      💰 Saldo terbaru: Rp 4,950,000
 ```
+
+#### Screenshot
+
+![Pencatatan Pengeluaran](img/4.png)
 
 ### 🏦 Demo 5: Saran Anggaran
 
@@ -112,6 +128,10 @@ Bot: 💰 Ringkasan Keuangan Bulanan:
 • Tabung sisanya secara rutin
 • Kalau udah cukup, coba investasi
 ```
+
+#### Screenshot
+
+![Saran Anggatan](img/5.png)
 
 ### 🛍️ Demo 6: Analisis Pembelian
 
@@ -139,6 +159,10 @@ Pilihan 2: Cari Alternatif Lebih Murah (Rp 9,000,000)
 🎯 Saran Saya: Nabung dulu sekitar 2 bulan. Lebih aman dan tidak ada beban hutang.
 ```
 
+#### Screenshot
+
+![Analisis Pembelian](img/6.png)
+
 ### 💸 Demo 7: Cek Saldo
 
 ```
@@ -158,6 +182,10 @@ Bot: 💰 **Ringkasan Keuangan Kamu:**
 User: @FinancialBot Saldo saya
 Bot: [Respons sama seperti di atas]
 ```
+
+#### Screenshot
+
+![Cek Saldo](img/7.png)
 
 ### 🏦 Demo 8: Laporan Keuangan
 
@@ -179,6 +207,10 @@ User: @FinancialBot Laporan keuangan
 Bot: [Respons sama seperti di atas]
 ```
 
+#### Screenshot
+
+![Laporan Keuangan](img/8.png)
+
 ### 📈 Demo 9: Statistik Keuangan
 
 ```
@@ -198,6 +230,10 @@ User: @FinancialBot Statistik keuangan
 Bot: [respons sama seperti di atas]
 ```
 
+#### Screenshot
+
+![Statistik Keuangan](img/9.png)
+
 ### ❌ Demo 10: Error Handling
 
 ```
@@ -213,6 +249,10 @@ Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 2,000,000 untuk kategori 
 ⚠️ **Perhatian**: Saldo Anda sudah negatif!
 ```
 
+#### Screenshot
+
+![Error Handling](img/10.png)
+
 ### 💰 Demo 11: Bahasa Gaul Indonesia
 
 ```
@@ -224,6 +264,10 @@ User: gue habis 30000 bensin
 Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 30,000 untuk kategori 'transport'.
 💰 Saldo terbaru: Rp 4,400,000
 ```
+
+#### Screenshot
+
+![Bahasa Gaul Indonesia](img/11.png)
 
 ### 👥 Demo 12: Multiple Users
 
@@ -244,6 +288,10 @@ Bot: 💰 **Ringkasan Keuangan Kamu:**
 • Pengeluaran: Rp 0
 • Saldo: Rp 3,000,000 (positif)
 ```
+
+#### Screenshot
+
+![Multiple Users](img/12.png)
 
 ## CLI Demo
 
