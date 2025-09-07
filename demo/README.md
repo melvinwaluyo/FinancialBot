@@ -95,18 +95,22 @@ Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 50,000
 ```
 User: @FinancialBot bantuan anggaran saya
 
-Bot: 💰 **Ringkasan Keuangan Bulanan**:
-     • **Pemasukan**: Rp 5,000,000
-     • **Pengeluaran**: Rp 50,000
-     • **Sisa Uang**: Rp 4,950,000
+Bot: 💰 Ringkasan Keuangan Bulanan:
+• Pemasukan: Rp 5,000,000
+• Pengeluaran: Rp 50,000
+• Sisa: Rp 4,950,000
 
-     📊 **Saran Penggunaan Sisa Uang**:
-     • **Dana Darurat**: Rp 750,000 (15% dari pemasukan)
-     • **Tabungan**: Rp 1,500,000 (30% dari pemasukan)
+📊 Saran Penggunaan Sisa Uang:
+• Dana Darurat: Rp 750,000 (15% dari gaji)
+• Tabungan: Rp 1,485,000 (30% dari sisa)
+• Sisanya untuk Kamu: Rp 2,715,000
 
-     💡 **Rekomendasi**:
-     Prioritaskan dana darurat dan tabungan secara seimbang untuk
-     keamanan finansial jangka panjang.
+👍 Bagus Sekali: Pengeluaran kamu cuma 1% dari gaji. Kamu bisa nabung banyak!
+
+💡 Yang Harus Dilakukan:
+• Sisihkan dana darurat dulu (target 6 bulan pengeluaran)
+• Tabung sisanya secara rutin
+• Kalau udah cukup, coba investasi
 ```
 
 ### 🛍️ Demo 6: Analisis Pembelian
@@ -114,25 +118,25 @@ Bot: 💰 **Ringkasan Keuangan Bulanan**:
 ```
 User: @FinancialBot saya mau beli laptop 15000000
 
-Bot: 🛍️ **Analisis Beli Laptop**:
+Bot: 🛍️ Analisis Beli Laptop:
 
-**Harga Barang**: Rp 15,000,000
-**Gaji Bulanan**: Rp 5,000,000
-**Sisa Uang**: Rp 4,950,000
+Harga Barang: Rp 15,000,000
+Gaji Bulanan: Rp 5,000,000
+Saldo Sekarang: Rp 4,950,000
 
-💡 **Pilihan yang Tersedia**:
+⚠️ Kurang Dana: Masih kurang Rp 10,050,000
 
-**Pilihan 1**: Alternatif Lebih Murah (Rp 9,000,000)
-• Mengurangi beban finansial
-• Lebih sesuai dengan kemampuan saat ini
+💡 Pilihan untuk Kamu:
 
-**Pilihan 2**: Menabung Dulu
-• Tabung selama 3 bulan untuk bayar tunai
-• Menghindari beban cicilan bulanan
+Pilihan 1: Nabung Dulu (2 bulan)
+• Nabung Rp 4,950,000 per bulan
+• Bisa beli cash tanpa hutang
 
-**Pilihan 3**: Jika Harus Beli Sekarang
-• Cicilan 12 bulan: Rp 1,250,000/bulan
-• Pastikan pemasukan stabil untuk cicilan ini
+Pilihan 2: Cari Alternatif Lebih Murah (Rp 9,000,000)
+• Lebih mudah dijangkau
+• Bisa beli lebih cepat
+
+🎯 Saran Saya: Nabung dulu sekitar 2 bulan. Lebih aman dan tidak ada beban hutang.
 ```
 
 ### 💸 Demo 7: Cek Saldo
@@ -151,10 +155,7 @@ Bot: 💰 **Ringkasan Keuangan Kamu:**
 4. 💸 Rp 250,000 - makanan (groceries bulanan)
 5. 💚 Rp 1,500,000 - freelance (dari projek website)
 
-User: @FinancialBot berapa saldo saya?
-Bot: [Respons sama seperti di atas]
-
-User: @FinancialBot saldo
+User: @FinancialBot Saldo saya
 Bot: [Respons sama seperti di atas]
 ```
 
@@ -174,7 +175,7 @@ Bot: 📊 Laporan Keuangan per Kategori:
 💸 Pengeluaran:
 • Makan: Rp 50,000
 
-User: @FinancialBot Laporan
+User: @FinancialBot Laporan keuangan
 Bot: [Respons sama seperti di atas]
 ```
 
@@ -193,7 +194,7 @@ Bot: 📊 Statistik Keuangan Lengkap:
 💸 Rp 50,000 - makan (siang di sambal ss)
 💚 Rp 5,000,000 - gaji (kantor)
 
-User: @FinancialBot Statistik
+User: @FinancialBot Statistik keuangan
 Bot: [respons sama seperti di atas]
 ```
 
