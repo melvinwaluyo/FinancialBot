@@ -43,6 +43,27 @@ Financial Bot membantu pengguna mengelola keuangan melalui Discord dengan interf
 - Python 3.8+
 - Discord Bot Token
 
+### Quick Start - CLI Mode
+
+Untuk testing tanpa Discord:
+
+```bash
+# Clone repository
+git clone <repository-url>
+cd FinancialBot
+
+# Setup virtual environment
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Langsung jalankan CLI mode (tidak perlu Discord token)
+python cli_runner.py
+```
+
 ### Membuat Discord Bot
 
 1. **Discord Developer Portal**
