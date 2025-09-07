@@ -43,6 +43,23 @@ Financial Bot membantu pengguna mengelola keuangan melalui Discord dengan interf
 - Python 3.8+
 - Discord Bot Token
 
+### Membuat Discord Bot
+
+1. **Discord Developer Portal**
+   - Buka https://discord.com/developers/applications
+   - Klik **"New Application"** → nama: **"Financial Bot"**
+2. **Setup Bot**
+
+   - Sidebar **"Bot"** → **"Add Bot"**
+   - Enable **"Message Content Intent"** ✅
+   - Copy **Token** (jangan bagikan!)
+
+3. **Invite Bot ke Server**
+   - **"OAuth2"** → **"URL Generator"**
+   - **Scopes**: ✅ `bot`
+   - **Permissions**: Send Messages, Read Message History, Embed Links
+   - Copy URL dan authorize ke server Discord
+
 ### Instalasi
 
 ```bash
@@ -150,7 +167,6 @@ FinancialBot/
 
 ## 📊 Dokumentasi
 
-- [SETUP.md](SETUP.md) - Setup Discord Bot
 - [PRESENTATION.md](PRESENTATION.md) - Technical details
 - [demo/](demo/) - Demo scenarios & examples
 
