@@ -190,6 +190,12 @@ class FinancialRulesEngine:
             r'(?:planning to buy)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?',
             r'(?:can i buy)\s+(?:a\s+)?(.+?)(?:\s+(?:for|at|price)?\s*(\d+(?:,?\d+)*))?'
         ]
+        
+        self.stats_patterns = [
+            r'^\s*!stats\s*$',
+            r'\bstatistik\b',
+            r'\bstat\b'
+        ]
     
     def parse_amount(self, amount_str: str) -> float:
         """Parse string jumlah menjadi float"""
@@ -239,10 +245,11 @@ class FinancialRulesEngine:
         else:
             return 'lainnya'
     
-    def match_pattern(self, text: str, patterns: List[str]) -> Optional[re.Match]:
-        """Match text dengan list of patterns"""
+    def match_pattern(self, text, patterns):
+        """Match pattern and return the match object"""
+        import re
         for pattern in patterns:
-            match = re.search(pattern, text.lower(), re.IGNORECASE)
+            match = re.search(pattern, text, re.IGNORECASE)
             if match:
                 return match
         return None
@@ -437,6 +444,10 @@ class FinancialRulesEngine:
         # Check thanks
         if self.match_pattern(text, self.thanks_patterns):
             return {'type': 'thanks'}
+        
+        # Check stats command EARLY (before other patterns)
+        if self.match_pattern(text, self.stats_patterns):
+            return {'type': 'stats'}
         
         # Check report FIRST (before balance to prevent conflicts)
         if self.match_pattern(text, self.report_patterns):
