@@ -64,6 +64,9 @@ class FinancialBotCore:
             elif command_type == 'purchase_planning':
                 return self._handle_purchase_planning(user_id, command_result)
             
+            elif command_type == 'stats':
+                return self._handle_stats(user_id, command_result)
+            
             elif command_type == 'help':
                 return self.rules_engine.generate_response(command_result)
             
@@ -73,6 +76,34 @@ class FinancialBotCore:
         except Exception as e:
             self.logger.error(f"Error processing message: {e}")
             return "Maaf, terjadi kesalahan saat memproses perintah Anda. Silakan coba lagi."
+    
+    def _handle_stats(self, user_id: str, command_result: Dict[str, Any]) -> str:
+        """Handle perintah stats"""
+        stats = self.get_user_stats(user_id)
+        
+        if stats['transaction_count'] == 0:
+            return "📊 Kamu belum memiliki transaksi untuk ditampilkan statistiknya."
+        
+        balance_info = stats['balance']
+        response = "📊 **Statistik Keuangan Lengkap:**\n\n"
+        
+        # Summary
+        response += f"💰 **Total Pemasukan**: Rp {balance_info['income']:,.0f}\n"
+        response += f"💸 **Total Pengeluaran**: Rp {balance_info['expense']:,.0f}\n"
+        response += f"📈 **Saldo**: Rp {balance_info['balance']:,.0f}\n"
+        response += f"📊 **Total Transaksi**: {stats['transaction_count']}\n\n"
+        
+        # Recent transactions
+        if stats['recent_transactions']:
+            response += "📋 **Transaksi Terbaru:**\n"
+            for idx, trans in enumerate(stats['recent_transactions'][:5], 1):
+                emoji = "💚" if trans['type'] == 'income' else "💸"
+                response += f"{idx}. {emoji} Rp {trans['amount']:,.0f} - {trans['category']}"
+                if trans['description']:
+                    response += f" ({trans['description']})"
+                response += "\n"
+        
+        return response
     
     def _handle_income(self, user_id: str, username: str, command_result: Dict[str, Any]) -> str:
         """Handle perintah pemasukan"""
