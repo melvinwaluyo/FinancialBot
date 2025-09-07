@@ -167,7 +167,6 @@ FinancialBot/
 
 ## 📊 Dokumentasi
 
-- [PRESENTATION.md](PRESENTATION.md) - Technical details
 - [demo/](demo/) - Demo scenarios & examples
 
 ## 🧪 Quality Assurance
