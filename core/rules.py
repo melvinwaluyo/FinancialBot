@@ -11,7 +11,7 @@ class ReflectionEngine:
     """Engine untuk reflection kata ganti dan transformasi kalimat"""
     
     def __init__(self):
-        # Mapping kata ganti subjek ke objek - hanya bahasa Indonesia
+        # Mapping kata ganti subjek ke objek
         self.pronoun_reflections = {
             'saya': 'kamu',
             'aku': 'kamu', 
@@ -210,7 +210,10 @@ class FinancialRulesEngine:
         """Kategorisasi otomatis berdasarkan deskripsi dan jumlah"""
         description_lower = description.lower()
         
-        # Income categories - hanya bahasa Indonesia
+        # Smart categorization berdasarkan:
+        # 1. Keywords dalam deskripsi
+        # 2. Jumlah transaksi (>1M = kemungkinan gaji)
+        # 3. Context patterns (waktu, lokasi, dll)
         income_keywords = {
             'gaji': ['gaji', 'kantor', 'kerja', 'pekerjaan'],
             'freelance': ['freelance', 'projek', 'kontrak', 'lepas', 'sampingan'],
@@ -218,7 +221,6 @@ class FinancialRulesEngine:
             'hadiah': ['hadiah', 'bonus', 'reward', 'kado', 'pemberian']
         }
         
-        # Expense categories - hanya bahasa Indonesia
         expense_keywords = {
             'makanan': ['makan', 'nasi', 'ayam', 'restaurant', 'cafe', 'snack', 'lapar', 'kenyang', 'minuman'],
             'transport': ['transport', 'bensin', 'ojek', 'taksi', 'bus', 'kereta', 'grab', 'gojek', 'motor', 'mobil'],
@@ -662,7 +664,6 @@ Makanan, Transport, Hiburan, Belanja, Tagihan, Kesehatan, Pendidikan, Gaji, Free
         expense_percentage = (expense / income * 100) if income > 0 else 0
         available = balance
         
-        # Simple budget recommendations - Indonesian style
         dana_darurat = income * 0.15  # 15% untuk dana darurat
         tabungan = available * 0.30 if available > 0 else 0  # 30% dari sisa untuk tabungan
         sisanya = max(0, available - dana_darurat - tabungan)
