@@ -257,7 +257,7 @@ Bot: Oke! Saya sudah catat pengeluaran kamu sebesar Rp 2,000,000 untuk kategori 
 
 ```
 User: gue dapet 500000 projek
-Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 500,000 untuk kategori 'freelance'.
+Bot: Baik! Saya telah mencatat pemasukan kamu sebesar Rp 500,000 untuk kategori 'gaji'.
 💰 Saldo terbaru: Rp 4,430,000
 
 User: gue habis 30000 bensin
