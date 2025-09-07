@@ -293,6 +293,11 @@ class FinancialRulesEngine:
         # Auto-categorize if category is generic
         if category in ['uang', 'dana', 'income', 'pemasukan']:
             category = self.categorize_automatically(description, amount)
+        else:
+            # Check if the current category should be auto-categorized to a broader category
+            auto_category = self.categorize_automatically(category + " " + description, amount)
+            if auto_category != 'lainnya':  # If auto-categorization found a match
+                category = auto_category
         
         return {
             'type': 'income',
@@ -321,9 +326,14 @@ class FinancialRulesEngine:
             category = groups[1].lower() if len(groups) >= 2 and groups[1] else "lainnya"
             description = groups[2] if len(groups) > 2 and groups[2] else ""
         
-        # Auto-categorize if category is generic
+        # Auto-categorize if category is generic OR if category matches keywords
         if category in ['uang', 'dana', 'expense', 'pengeluaran']:
             category = self.categorize_automatically(description, amount)
+        else:
+            # Check if the current category should be auto-categorized to a broader category
+            auto_category = self.categorize_automatically(category + " " + description, amount)
+            if auto_category != 'lainnya':  # If auto-categorization found a match
+                category = auto_category
         
         return {
             'type': 'expense',
