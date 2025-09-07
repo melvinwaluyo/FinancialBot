@@ -16,7 +16,7 @@
 
 ## 🚀 Demo Interaksi Bot - Fitur Analisis Keuangan
 
-### 🏦 Demo 1: Saran Anggaran (Fitur Baru!)
+### 🏦 Demo 1: Saran Anggaran
 
 ```
 User: @FinancialBot bantuan anggaran saya
@@ -33,7 +33,7 @@ Setelah ada data pemasukan, saya akan berikan:
 • Analisis keuangan yang sederhana dan mudah dipahami
 ```
 
-### 🛍️ Demo 2: Analisis Pembelian (Fitur Baru!)
+### 🛍️ Demo 2: Analisis Pembelian
 
 ```
 User: @FinancialBot saya mau beli laptop 15000000
@@ -132,10 +132,10 @@ Bot: 💰 **Ringkasan Keuangan Kamu:**
 5. 💚 Rp 1,500,000 - freelance (dari projek website)
 
 User: berapa saldo saya?
-Bot: [Same response as above]
+Bot: [Respons sama seperti di atas]
 
 User: saldo
-Bot: [Same response as above]
+Bot: [Respons sama seperti di atas]
 ```
 
 ### Screenshot 8: Report Generation
@@ -169,6 +169,9 @@ Bot: 📊 **Laporan Keuangan per Kategori:**
 **Tagihan:**
   💸 Keluar: Rp 200,000
   📉 Net: Rp -200,000
+
+User: saldo
+Bot: [Respons sama seperti di atas]
 ```
 
 ### Screenshot 9: Stats Command (Rich Embed)
