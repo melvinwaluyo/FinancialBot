@@ -1,6 +1,6 @@
 # Pemrosesan Bahasa Alami - Kelas A | Dosen: Syukron Abu Ishaq Alfarozi, S.T., Ph.D.
 
-## Melvin Waluyo (22/492978/TK/53955)
+## Melvin Waluyo (22/492978/TK/53972)
 
 ## Muhammad Grandiv Lava Putra (22/493242/TK/54023)
 
